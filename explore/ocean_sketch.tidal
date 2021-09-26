@@ -1,0 +1,124 @@
+
+  -- OCEAN
+(keySig,v,c,b) = (
+  mode (5-7) $ F' \\\ mMaj
+  ,(f vTheme, f vHarm, 0) :: Section
+  ,(f cTheme, f cHarm, 1) :: Section
+  ,(f bTheme, f bHarm, 2) :: Section
+  )
+    where
+      f a = (fastcat $ fst a, fastcat $ snd a)
+      vTheme = ([ -- VERSE THEME
+        "<0 2> <2 4> <1 3> [<-2 0> . <-4 -1> -3]"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      vHarm = ([ -- VERSE HARMONY
+        "0 2 -1 [-2 . -4 -3]"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      cTheme = ([ -- CHORUS THEME
+        "0",
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      cHarm = ([ -- CHORUS HARMONY
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      bTheme = ([ -- BREAK THEME
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      bHarm = ([ -- BREAK HARMONY
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+
+-- OCEAN
+
+p12 p0 p1 p2 = d12 $ do
+  let (motion, prog) = (fst' p0, inKey p1)
+  id $
+    pushBy (2/4) $
+    slow 4 $
+    stack [silence
+      ,oboe "pp"
+      -- ,modwheel 0.0
+      ] |* vel p2
+        -- |- note 12
+        |+| prog 4 (fst motion
+         -- +| "[0 4 9 4]*16"
+         -- +| "[4 0]!8 [5 0]!4 [4 <2 0>]!4"
+         -- +| "[0 9]*32"
+         -- +| "[0 12]*32"
+          ) |+ note (snd motion)
+
+p15 p0 p1 p2 = d15 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,clarinet "pp"
+      -- ,modwheel 0.0
+      ] |* vel p2
+        |+ humanise 0.1
+        |* vel (slow 16 $ lfo saw 0.3 0.9)
+        -- |- note 12
+        |+| prog 4 (fst motion
+         -- +| "[0 4 9 4]*32"
+         -- +| "[4 0]!8 [5 0]!4 [4 <2 0>]!4"
+         -- +| "[0 9]*32"
+          ) |+ note (snd motion)
+
+p16 p0 p1 p2 = d16 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    -- within (0.1,1) degrade $
+    -- sometimes ((|+ note 12) . rev) $
+    stack [silence
+      ,harp "ffff"
+      -- ,hemidemisemiquaver ~> ped "[0 1!31]" #hp
+      -- ,modwheel 0.0
+      ] |* vel p2
+        |+ humanise 0.1
+        |- note 12
+        -- |+ note 24
+        |+| prog 4 (fst motion
+        -- |+  "[[0,9,4].[2,11,7].[-3,7,2].[0,9,4] 0]*4"
+         +| "[[0,4] 2 4 7]*16"
+         -- +| "[0 . 7 <9 [11 21]>]*8"
+          ) |+ note (snd motion)
+
+  -- LAUNCHER
+do
+  let
+    dyn = slow 16 $ lfo saw 0.8 1
+    s = v
+    k = keySig
+    d = (*dyn)
+  mapM_ id [hush
+    ,p12 s k $d 0.9
+    -- ,p15 s k $d 0.9
+    -- ,p16 s k $d 0.7
+    ]
+
+setcps(77/120/2)
+
+hush'
+
+k = mode (5-7) $ F' \\\ mMaj
+
+d1 $ slow 4 $ stack [silence
+  ,flute "ppp" +| note (k "[~ . ~@3 [2,4]]" |+ 12)
+  ,oboe "pppp" +| note (k "[~ . ~@3 [0,2]]" |+ 12)
+  ,bassoon "pp" +| note (k "[0 ]" |- 12)
+  ,horn "p" +| note (k "[0@3 2]" |- 0)
+  ,clarinet "ppp" +| note (k "[~ . ~ [-2,0]]" |- 0)
+  ,cello "pp" +| note (k "[0*2 . [-1!2 -2!2] ]" |- 24) #legato 0.9
+  ,contrabass "ppp" +| note (k "[0*2 . [-1!2 -2!2] ]" |- 36) #legato 0.9
+]

@@ -1,0 +1,112 @@
+-- SUITE No.1 for small orchestra -- Igor Stravinsky
+
+-- 2 flutes
+-- 1 oboe
+-- 2 clarinets
+-- 2 bassoons
+-- 1 horn
+-- 1 trumpet
+-- 1 trombone
+-- 1 tuba
+-- 1st violins
+-- 2nd violins
+-- violas
+-- celli
+-- contrabasses
+-- percussion
+
+setcps (78/60)
+
+hush'
+
+setCC "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" 64 0
+
+setCC "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" 11 127
+
+mapM_ id [p "transport" $ do
+  let
+    out = 23
+    key = D \\\ mMaj
+    dyn1 = cat $ (lfo saw 0.4 0.5) : (lfo saw 0.5 0.6) : take 7 (repeat 0.60)
+    dyn2 = rev (cat $ (lfo saw 0.4 0.5) : (lfo saw 0.5 0.6) : take 5 (repeat 0.60))
+  --
+  seqP $ sync out ++ [runSeq
+    ,bar 1 13 $ bpm 74
+    ,bar 14 16 $ bpm 75
+    ,bar 17 23 $ bpm 76
+    ,bar 0 0 $ ped 0 #ch "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]"
+    --
+    ,bar 3 9 $ r1focus $ dyn1*(slow 9 $ lfo saw 0.9 1.3)
+    ,bar 1 9 $ r1blend dyn1*0.85
+    --
+    ,bar 10 16 $ r2focus (slow 7 $ lfo saw 0.9 1.2)
+    ,bar 10 16 $ r2blend 0.75
+     --
+    ,bar 17 23 $ r3focus (slow 7 $ lfo saw 1.1 0.8)
+    ,bar 17 22 $ r3blend (slow 7 $ lfo saw 0.8 0.7)
+    ,bar 22 23 $ ped "[[~@7 1] [1 0@3]]/2" #vc
+    ,bar 22 22 $ clarinet "pp" |+ note (transpose 3 key "~@7 3")
+    ,bar 22 23 $ ped "[[~@7 1] [1 0@3]]/2" #cl
+    ]
+  --
+  ,resetCycles
+  ,hush
+  ]
+
+r1blend d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,clarinet "p" +| note (transpose 3 key "[[-2 1 -1 2 -2 1 -1 ~] [~ [-2 1 -1 2]] [[-2 1 -1 ~] ~]]/3")
+    ,clarinet "p" +| note (transpose 3 key "[[<~ -2!2> ~!5 -1 2] [-2 1 -1 2 -2 ~!3] [~!2 -1 2 -2 1 -1 2]]/3")
+    ,pizzicato "mp" +| note (key "~ -5 ~ -7") -- viola
+    ,cello "p" +| note (key "-4 . 2@3 ~. -6 . 0@3 ~" - 12)
+    ,pizzicato "p" +| note (key "-3 ~ -5 ~" - 24) -- contrabass
+    ] |* vel d
+--
+r1focus d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,flute "p" +| note (key "[2 [-1 1 . 2] [1 0 -1 1 . 2] [1 2] ~!3]/7" + "[0,12]")
+    ,violin1 "mp" +| note (key "[9 [6 8 . 9] [8 7 6 8 . 9] [8 9] [8 7 6 8 . 5 [3 5]] [6 6 . 8 7 6 8] [5 [8 5] . 6]]/7")
+    ,violin2 "mp" +| note (key "[2 [-1 1 . 2] [1 0 -1 1 . 2] [1 2] ~!3]/7")
+    ] |* vel d
+--
+r2blend d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,clarinet "pp" +| note (transpose 3 key "[[1 -5 -8 -5 2 ~!3] [3 -3 -8 -3 4 ~!3] [3 -3 -8 -3 2 ~!3] [1 -5 -8 -5 0 ~!3] ~!3]/7")
+    ,clarinet "pp" +| note (transpose 3 key "[[1 ~!3 2 -4 -7 -4] [3 ~!3 4 -2 -7 -2] [3 ~!3 2 -4 -7 -4] [1 ~!3 0 -6 -7 -6] ~!3]/7")
+    ,bassoon "pp" +| note (key $ "[~!4 [-4 -3 -2 -1] [0 1 0 -1] [-2 -3 -4 -5]]/7" - "[0,9]")
+    ,pizzicato "mp" +| note (key "[~!4 [~ 2 ~ 1 ~ 4 ~ 3] [~ 6 ~ 5 ~ 6 ~ 2] [~ 4 ~ 0 ~ 1 ~ -2]]/7" - 12)
+    ] |* vel d
+--
+r2focus d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,flute "p" +| note (key "[[6 8 . 5@7 ~] [[5 7] 8 . 5@7 ~] [6 [8@7 ~] . 7 [6 5]] [[6 7] [8@7 ~] . 5] ~ [] []]/7")
+    ,flute "[p!5 mp!2]/7" +| note (key "[[1 . 2@7 ~] [2 . 4@7 ~] [3 2] [1 0] ~ [~ . 4 3 [2@7 ~] 4] [1 [-1 1] [2@7 ~] 2]]/7")
+    ,violin1 "p" +| note (key "[~!4 [4 3 2 4 . [1@7 ~] [-1 . 1@7 ~]] [2 2 . 4 3 2 4] [[1@7 ~] [-1 [1@7 ~]] . 2 2]]/7" + 12)
+    ,violin2 "p" +| note (key "[~!5 [~ . 4 3 2 4] [[1@7 ~] [-1 [1@7 ~]] . 2 2]]/7" + 12)
+    ] |* vel d
+--
+r3blend d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,clarinet "p" +| note (transpose 3 key "[[-2 1 -1 2 -2 1 -1 ~] [~ [-2 1 -1 2]] [[-2 1 -1 ~] ~]]/3")
+    ,clarinet "pp" +| note (transpose 3 key "[[<~ -2!2> ~!5 -1 2] [-2 1 -1 2 -2 ~!3] [~!2 -1 2 -2 1 -1 2]]/3")
+    ,pizzicato "mp" +| note (key "~ -5 ~ -7") -- viola
+    ,cello "p" +| note (key "-4 . 2@3 ~. -6 . 0@3 ~" - 12)
+    ,pizzicato "p" +| note (key "-3 ~ -5 ~" - 24) -- contrabass
+    ] |* vel d
+--
+r3focus d = do
+  let key = D \\\ mMaj
+  slow 4 $ stack [silence
+    ,flute "ppp" +| note (key "[[-2 5]!3 5 [5 ~!2 5] [-2, 5] ~]/7" + 12)
+    ,0.125 ~> flute "pp" +| note (key "[[~ -2@7]!2 ~!5]/7" + 12)
+    ,ped "[0@2 [0@3 1] 1 [1 0@6 1] 1 [1 0@3]]/7" #fl
+    ,violin1 "mf" +| note (key "[[5 . 2 4] [5 . 4 3 2 4] [5 4] [-2] ~!3]/7" + 12)
+    ,ped "[0@3 [0 1] [1 0@7] 0@2]/7" #vn1
+    ,violin2 "mp" +| note (key "[[5 . 2 4] [5 . 4 3 2 4] [5 4] [5] ~!3]/7")
+    ,ped "[0@3 [0 1] 1 [1 0@7] 0]/7" #vn2
+    ] |* vel d

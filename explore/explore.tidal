@@ -1,0 +1,251 @@
+-- 1. Key area materials in scope
+  -- + theHarmonicAlgorithm infinite list gen
+
+let
+  cellI   = [0,2,4,5,9]
+  cellII  = [0,2,4,7,11]
+  cellIII = [0,2,4,9,11]
+  cellIV  = [0,2,4,5,7]
+  cellV   = [0,2,5,7,11]
+  cellVI  = [0,2,5,9,11]
+  cellVII = [0,2,4,5,8]
+  cellIIX = [0,4,5,9,11]
+  cellX   = [0,4,5,8,11]
+  cellXI  = [2,4,5,8,11]
+  maj     = [0,2,4,7,9]
+  oki     = [0,4,5,7,11]
+  iwa     = [0,1,5,6,10]
+  kmo     = [0,2,3,7,9]
+
+-- 2. Assign globals, composition and initial conditions
+
+
+
+  -- KOLUKECHEEN
+(keySig,a,b,c) = (
+  mode 5 $ C \\\ mMaj
+  ,(f vTheme, f vHarm, 0) :: Section
+  ,(f cTheme, f cHarm, 1) :: Section
+  ,(f bTheme, f bHarm, 2) :: Section
+  )
+    where
+      t = (fast 2) . fastcat
+      f a = ((t . fst) a, (t . snd) a)
+      vTheme = ([ -- A THEME
+        "0 2 . 1 0 . 4 . 3 4",
+        "<[[3 [2 0]] . 2] [[2 3 . 2 1] 0]>"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      vHarm = ([ -- A HARMONY
+        "[0 [0 3] [3 4] [4 0]]/2"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      cTheme = ([ -- B THEME
+        "0 2 . 1 0 . 4 . 3 4",
+        "<[[3 [2 0]] . 2] [[2 3 . 2 1] 0]>"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      cHarm = ([ -- B HARMONY
+        "[2 -2 -1 2 . -2 -4 -3 0]/2"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      bTheme = ([ -- C THEME
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+      bHarm = ([ -- C HARMONY
+        "0"
+        ],[ -- TRANSPOSE
+        "0"
+        ])
+
+-- 3. Initialise stack partials foreground background perc
+
+-- 4. Build 3 parallel blocks out of stack partials
+
+-- 5. Improv between blocks
+  -- OR Stucture blocks with seqP
+
+------
+
+setcps 0.5
+
+kick pat = midinote (pat |= 35) #ch 10
+hhc pat = midinote (pat |= 42) #ch 10
+hho pat = midinote (pat |= 46) #ch 10
+hhp pat = midinote (pat |= 44) #ch 10
+sd pat = midinote (pat |= 40) #ch 10
+tamb pat = midinote (pat |= 54) #ch 10
+cp pat = midinote (pat |= 39) #ch 10
+china pat = midinote (pat |= 52) #ch 10
+
+d1 $ harp "mp" +| note ("[0 2 4 7]" + 12)
+
+d1 $ harp "mp" +| note ("[0]" + 12)
+
+d1 $ hhp "~ 0 ~ 0"
+
+hush
+
+p01 p0 p1 p2 = d1 $ do
+  let (motion, prog) = (fst' p0, inKey p1)
+  id $
+    stack [silence
+      ,flute "p"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[0 <4 2 -1 <<0 -1> ~>>]*8"
+        |+ "7"
+        -- |+ "[0,<3 2 3 4>]"
+          ) |+ note (snd motion)
+      -- >> silence
+
+p03 p0 p1 p2 = d3 $ do
+  let (motion, prog) = (fst' p0, inKey p1)
+  id $
+    stack [silence
+      ,bassoon "pp"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[-7]*8"
+          ) |+ note (snd motion)
+      -- >> silence
+
+p05 p0 p1 p2 = d5 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,horn "mf"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+        --  +| "[0]*16"
+        |+ "[0,4,9]"
+        |+ "[-14]"
+          ) |+ note (snd motion)
+      -- >> silence
+
+  -- MOTHER-32
+p12 p0 p1 p2 = d12 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,moog "mp"
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[0]*32"
+        |+ "[-21]"
+          ) |+ note (snd motion)
+      -- >> silence
+
+p13 p0 p1 p2 = d13 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,violin1 "pppp"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[2,4]*8"
+        |+ "[7]"
+          ) |+ note (snd motion)
+      -- >> silence
+
+p14 p0 p1 p2 = d14 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,violin2 "pppp"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[0]*4"
+        |+ "[14]"
+          ) |+ note (snd motion)
+      -- >> silence
+
+p15 p0 p1 p2 = d15 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,cello "mp"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[0]*32"
+        |+ "[-14]"
+          ) |+ note (snd motion)
+            |= legato 0.5
+      -- >> silence
+
+p16 p0 p1 p2 = d16 $ do
+  let (motion, prog) = (snd' p0, inKey p1)
+  id $
+    stack [silence
+      ,contrabass "mf"
+      ,modwheel 0.0
+      ] |* vel p2
+        |+| prog 8 (fst motion
+         +| "[0]*32"
+        |+ "[-21]"
+          ) |+ note (snd motion)
+            |= legato 0.5
+      -- >> silence
+
+  -- LAUNCHER
+do
+  let
+    dyn = slow 16 $ lfo saw 0.8 1
+    s = b
+    k = keySig
+    d = (*dyn)
+  mapM_ id [hush
+    ,p01 s k $d 0.5
+    ,p03 s k $d 0.8
+    ,p05 s k $d 0.7
+    -- ,p12 s k $d 0.9
+    ,p13 s k $d 0.9
+    ,p14 s k $d 0.9
+    ,p15 s k $d 0.9
+    ,p16 s k $d 0.7
+    ]
+
+hush
+
+panic
+
+launcher s k dyn ps = do
+  let
+    d = (*dyn)
+  mapM_ id $ [hush
+    ,p01 s k $d 0.7
+    -- ,p02 s k $d 0.7
+    ,p03 s k $d 0.7
+    -- ,p04 s k $d 0.7
+    ,p05 s k $d 0.9
+    -- ,p06 s k $d 0.9
+    -- ,p07 s k $d 0.9
+    -- ,p08 s k $d 0.9
+    -- ,p09 s k $d 0.9
+    -- ,p10 s k $d 0.9
+    -- ,p11 s k $d 0.9
+    -- ,p12 s k $d 0.9
+    ,p13 s k $d 0.9
+    ,p14 s k $d 0.9
+    -- ,p15 s k $d 0.9
+    -- ,p16 s k $d 0.99
+    ]
+
+dynamic = slow 16 $ lfo saw 0.8 1
+section = a 
+
+launcher section keySig dynamic
+
+hush

@@ -1,0 +1,141 @@
+setcps 0.33
+key = keySig
+
+d1 $ stack [silence
+  ,harp "f" +| note (mode 5 key "~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4")
+  ,harp "f" +| note (mode 5 key "0 4 -2 -1" - 12)
+  ,harp "p" +| note (mode 5 key "0 4 -2 -1" - 24)
+]
+ 
+d1 $ stack [silence
+  ,harp "f" +| note (mode 5 key "~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4")
+  ,harp "f" +| note (mode 5 key "5*8" - 12)
+  ,harp "p" +| note (mode 5 key "5*8" - 24)
+]
+
+d1 $ stack [silence
+  ,harp "f" +| note (mode 5 key "~ 3 . ~ 2 ~ 4 . ~ 3 . ~ 2 ~ 4")
+  ,harp "f" +| note (mode 5 key "6*8" - 12)
+  ,harp "p" +| note (mode 5 key "6*8" - 24)
+]
+
+hush
+
+mapM_ id [p "transport" $ do
+  let 
+    out = 16
+    key = mode 5 $ D \\\ mMaj
+    key' = B \\\ hMin
+  -- 
+  seqPLoop $ sync out ++ [runSeq 
+    ,rh 0 0 $ meter 80 4 4
+    ,rh 0 0 $ harp "mf" +| note (key "[~ . ~ . ~ . ~!3 4]/4")
+    ,rh 1 8 $ harp "mf" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
+    ,rh 1 8 $ harp "mf" +| note (key "[0 4 -2 -1]/4" |- "[12,24]")
+    ,rh 9 10 $ harp "f" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
+    ,rh 9 10 $ harp "f" +| note (key "[5*4]/4" |- "[12,24]")
+    ,rh 11 12 $ harp "f" +| note (key "[~ 3 . ~ 2 ~ 4 . ~ 3 . ~ 2 ~ 4]/4")
+    ,rh 11 12 $ harp "f" +| note (key "[6*4]/4" |- "[12,24]")
+    ,rh 13 14 $ harp "f" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
+    ,rh 13 14 $ harp "f" +| note (key "[5*4]/4" |- "[12,24]")
+    ,rh 15 16 $ harp "f" +| note (key "[~ 3 . ~ 2 ~ 4 . ~ 3 . ~ 2 ~ 4]/4")
+    ,rh 15 15 $ harp "f" +| note (key "[6*4]/4" |- "[12,24]")
+    ,rh 16 16 $ harp "f" +| note (key' "[6*4]/4" |- "[12,24]")
+    ,rh 17 24 $ harp "mf" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
+    ,rh 17 24 $ harp "mf" +| note (key "[0 4 -2 -1]/4" |- "[12,24]")
+  -- 
+    ]
+  --
+  ,resetCycles
+  ,hush
+  ]
+
+hush'
+
+rh = phrase
+
+
+d1 $ kick "[x*3]/4" |+ vel 0.3
+
+kick pat = midinote (pat |= 35) #ch 10
+hhc pat = midinote (pat |= 42) #ch 10
+hho pat = midinote (pat |= 46) #ch 10
+hhp pat = midinote (pat |= 44) #ch 10
+snare pat = midinote (pat |= 40) #ch 10
+tamb pat = midinote (pat |= 54) #ch 10
+cp pat = midinote (pat |= 39) #ch 10
+china pat = midinote (pat |= 52) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+sidestick pat = midinote (pat |= 37) #ch 10
+
+tamb midinote 54
+
+crash midinote 49
+crash2 midinote 57
+ride midinote 51
+ride2 midinote 59
+ridebell midinote 53
+china midinote 52
+splash midinote 55
+sidestick midinote 37
+snare midinote 40
+snare2 midinote 38
+triopen midinote 81
+trimute midinote 80
+hatopen midinote 46
+hatclosed midinote 42
+hatped midinote 44
+chimes midinote 84
+kick midinote 36
+kick2 midinote 55
+clave midinote 75
+clave2 midinote 87
+
+
+perc bars pat = do
+  let --bars = 1
+      ps = [("tamb", midinote 54 #vel 0.5 #ch 10),
+           ("crash", midinote 49 #vel 0.5 #ch 10),
+           ("crash2", midinote 57 #vel 0.5 #ch 10),
+           ("ride", midinote 51 #vel 0.5 #ch 10),
+           ("ride2", midinote 59 #vel 0.5 #ch 10),
+           ("ridebell", midinote 53 #vel 0.5 #ch 10),
+           ("china", midinote 52 #vel 0.5 #ch 10),
+           ("splash", midinote 55 #vel 0.5 #ch 10),
+           ("sidestick", midinote 37 #vel 0.5 #ch 10),
+           ("snare", midinote 40 #vel 0.5 #ch 10),
+           ("snare2", midinote 38 #vel 0.5 #ch 10),
+           ("triopen", midinote 81 #vel 0.5 #ch 10),
+           ("trimute", midinote 80 #vel 0.5 #ch 10),
+           ("hatopen", midinote 46 #vel 0.5 #ch 10),
+           ("hatclosed", midinote 42 #vel 0.5 #ch 10),
+           ("hatped", midinote 44 #vel 0.5 #ch 10),
+           ("chimes", midinote 84 #vel 0.5 #ch 10),
+           ("kick", midinote 36 #vel 0.5 #ch 10),
+           ("kick2", midinote 55 #vel 0.5 #ch 10),
+           ("clave", midinote 75 #vel 0.5 #ch 10),
+           ("clave2", midinote 87 #vel 0.5 #ch 10)
+          ]
+      mult = fromList [(fromIntegral . ceiling) bars] :: Pattern Time
+      fs   = (timeFuncs mult) ++ [
+                ("ffff", (#vel 1)),
+                ("fff", (#vel 0.9)),
+                ("ff", (#vel 0.75)),
+                ("f", (#vel 0.65)),
+                ("mf", (#vel 0.55)),
+                ("mp", (#vel 0.45)),
+                ("p", (#vel 0.35)),
+                ("pp", (#vel 0.35)),
+                ("ppp", (#vel 0.30)),
+                ("pppp", (#vel 0.25))
+                ]
+   in ur bars pat ps fs

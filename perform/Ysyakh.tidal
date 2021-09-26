@@ -1,0 +1,149 @@
+setcps (88/60)
+
+hush'
+
+-- mapM_ id [p "transport" $ do
+--   let
+--     out = 114
+--     k = mode (5-7) $ Eb \\\ mMaj
+--     swing = swingBy 0.04 2
+--     theme = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . <[4 5 6 ~] [4 [-5,2]]>]/4" |- 12)
+--     theme' = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . [4 [-5,2]]]/4" |- 12)
+--     build = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 5 7 ] [[-5,11]@2 4 6 . ~ 4 -5 7 . ~ 4 -5 6 . ~ 4 -5@2 ]]/8" |- 12)
+--     chorusA = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 5 7 ] [[-5,11]@2 4 6 . ~ 4 -5 11 . ~ 4 -5 7 . ~ 4 -5 @2 ] [[0,7]@2 4 7 . ~ 4 0 9 . ~ 4 0 7 . ~ 4 0@2 ] [[-3,8]@2 6 8 . ~ 6 -3 9 . ~ 6 -3 8 . ~ 6 -3 7]]/16" |- 12)
+--     chorusB = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 -2@2 ] [[-1,13]@2 8 4 . ~ 8 -1 9 . ~ 8 -1 13 . ~ 8 -1@2] [[-7,7]@2 4 7 . ~ 4 -7 9 . ~ 4 -7 7 . 10 9 ] [[-3,8]@2 6 8 . ~ 6 -3 9 . ~ 6 -3 8 . ~ 6 -3 7]]/16" |- 12)
+--     bridge = swing $ note (k "[[7@3 12] [[~ 7] 11] . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>, [-4 . <-7!3 -5>]]/4" |- 12)
+--     ysyakhA = swing $ note (k "[-7 0 . 1 2 -7 0 . ~ -7 0@2 . 2@2 -7 0 . -7 0 . 1 2 -7 0 . ~ 0 -1@2 . 0@2 -7 0]/8" |- 12)
+--     ysyakhB = swing $ note (k "[[-7, 0, 4] 0 . 3 4 -7 0 . ~ -7 0@2 . 2@2 -7 0 . [-7, 0, 4] 0 . 3 4 -7 0 . ~ 0 -1@2 . 0@2 -7 0]/8" |- 12)
+--     ysyakhC = swing $ note (k "[[-7, 0, 4, 7, 9] [-7, 11] . [-7, 10 11 10 7] [-7 [4,7]] . ~ [4,7] -7@2 . [2,4,9]@2 -7 [4,9] . [-7, 0, 4, 7, 9] [-7, 11] . [-7, 10 11 10 7] [-7 [4,7]] . ~ 0 -1@2 . [0,4,7]@3 [4,7]]/8" |- 12)
+--     ysyakhA' = swing $ note (k "[-7 0 . 1 2 -7 0 . ~ -7 0@2 . 2@2 -7 0 . -7 0 . 1 2 -7 0 . ~ 0 -1@2 . 0@2 <[-7 0] ~>]/8" - 12)
+--   --
+--   seqPLoop $ sync out ++ [runSeq
+--     ,rh 0 4 $ meter 88 4 4
+--     ,rh 1 8 $ silence
+--     ,rh 9 24 $ harp "f" +| theme
+--     ,rh 25 26 $ harp "f" +| build
+--     ,rh 27 28 $ harp "f" +| theme
+--     ,rh 29 30 $ harp "f" +| build
+--     ,rh 31 32 $ harp "f" +| theme
+--     ,rh 33 34 $ harp "f" +| theme'
+--     ,rh 35 42 $ harp "f" +| chorusA
+--     ,rh 43 50 $ harp "f" +| chorusB
+--     ,rh 51 54 $ harp "f" +| theme
+--     ,rh 55 70 $ harp "f" +| bridge
+--     ,rh 71 78 $ harp "f" +| chorusA
+--     ,rh 79 86 $ harp "f" +| chorusB
+--     ,rh 87 90 $ harp "ff" +| ysyakhA
+--     ,rh 91 94 $ harp "fff" +| ysyakhB
+--     ,rh 95 98 $ harp "fff" +| ysyakhC
+--     ,rh 99 102 $ harp "f" +| ysyakhA
+--     ,rh 103 106 $ harp "fff" +| ysyakhB
+--     ,rh 107 110 $ harp "fff" +| ysyakhC
+--     ,rh 111 114 $ harp "ff" +| ysyakhA'
+--   --
+--     ]
+--   --
+--   ,resetCycles
+--   ,hush
+--   ]
+
+mapM_ id [p "transport" $ do
+  let
+    out = 114
+    k = mode (5-7) $ Eb \\\ mMaj
+    swing = swingBy 0.04 2
+    theme = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . <[4 5 6 ~] [4 [-5,2]]>]/4" |- 12)
+    theme' = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . [4 [-5,2]]]/4" |- 12)
+    build = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 5 7 ] [[-5,11]@2 4 6 . ~ 4 -5 7 . ~ 4 -5 6 . ~ 4 -5@2 ]]/8" |- 12)
+    chorusA = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 5 7 ] [[-5,11]@2 4 6 . ~ 4 -5 11 . ~ 4 -5 7 . ~ 4 -5 @2 ] [[0,7]@2 4 7 . ~ 4 0 9 . ~ 4 0 7 . ~ 4 0@2 ] [[-3,8]@2 6 8 . ~ 6 -3 9 . ~ 6 -3 8 . ~ 6 -3 7]]/16" |- 12)
+    chorusB = swing $ note (k "[[-2@2 7 9 . ~ 7 -2 14 . ~ 7 -2 9 . ~ 7 -2@2 ] [[-1,13]@2 8 4 . ~ 8 -1 9 . ~ 8 -1 13 . ~ 8 -1@2] [[-7,7]@2 4 7 . ~ 4 -7 9 . ~ 4 -7 7 . 10 9 ] [[-3,8]@2 6 8 . ~ 6 -3 9 . ~ 6 -3 8 . ~ 6 -3 7]]/16" |- 12)
+    bridge = swing $ note (k "[[7@3 12] [[~ 7] 11] . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>]/4" |- 12)
+    ysyakhA = swing $ note (k "[-7 0 . 1 2 -7 0 . ~ -7 0@2 . 2@2 -7 0 . -7 0 . 1 2 -7 0 . ~ 0 -1@2 . 0@2 -7 0]/8" |- 12)
+    ysyakhB = swing $ note (k "[[-7, 0, 4] 0 . 3 4 -7 0 . ~ -7 0@2 . 2@2 -7 0 . [-7, 0, 4] 0 . 3 4 -7 0 . ~ 0 -1@2 . 0@2 -7 0]/8" |- 12)
+    ysyakhC = swing $ note (k "[[-7, 0, 4, 7, 9] [-7, 11] . [-7, 10 11 10 7] [-7 [4,7]] . ~ [4,7] -7@2 . [2,4,9]@2 -7 [4,9] . [-7, 0, 4, 7, 9] [-7, 11] . [-7, 10 11 10 7] [-7 [4,7]] . ~ 0 -1@2 . [0,4,7]@3 [4,7]]/8" |- 12)
+    ysyakhA' = swing $ note (k "[-7 0 . 1 2 -7 0 . ~ -7 0@2 . 2@2 -7 0 . -7 0 . 1 2 -7 0 . ~ 0 -1@2 . 0@2 <[-7 0] ~>]/8" - 12)
+  --
+  seqPLoop $ sync out ++ [runSeq
+    ,rh 0 4 $ meter 88 4 4
+    ,rh 1 8 $ cc 1 1 #m32
+    ,rh 3 8 $ flute "mp" +| note (k "[4 5]*4" |+ "[0,12]")
+    ,rh 5 6 $ clarinet "ppp" +| note (k "[4 2 4 2 1 4 5 4]/8" |+ 12)
+    ,rh 7 8 $ clarinet "ppp" +| note (k "[2 [5 4@5] 2 1 -2 1 2 [0 2 0@5]]/8" |+ 12)
+    ,rh 9 16 $ slow 32 $ cc 1 (lfo saw 0.2 0.8) #m32
+    ,rh 9 16 $ bassdrum "p" +| note (k "[3]/4" |- 48)
+    ,rh 17 24 $ cc 1 0 #m32
+    ,rh 17 24 $ moog "p" +| note (k "[3]/4" |- 24) #sustain 0.01
+    ,rh 9 24 $ harp "f" +| theme
+    ,rh 25 26 $ slow 8 $ cc 1 (lfo saw 0.3 0.9) #m32
+    ,rh 25 26 $ harp "f" +| build
+    ,rh 25 26 $ moog "f" +| note (k "[5 2 ~ ~]/16" |- 24) #legato 0.01
+    ,rh 27 28 $ cc 1 0 #m32
+    ,rh 27 28 $ harp "f" +| theme
+    ,rh 29 30 $ moog "f" +| note (k "[5 2 ~ ~]/16" |- 24) #legato 0.01
+    ,rh 29 30 $ slow 8 $ cc 7 (lfo saw 0.3 0.9) #m32
+    ,rh 29 30 $ harp "f" +| build
+    ,rh 31 34 $ cc 1 0 #m32
+    ,rh 31 32 $ harp "f" +| theme
+    ,rh 33 34 $ harp "f" +| theme'
+    ,rh 35 50 $ cc 1 1 #m32
+    ,rh 35 42 $ moog "f" +| note (k "[5 2 0 4]/16" |- 24) #sustain 0.01
+    ,rh 35 42 $ harp "f" +| chorusA
+    ,rh 43 50 $ moog "f" +| note (k "[5 6 0 4]/16" |- 24)
+    ,rh 43 50 $ harp "f" +| chorusB
+    ,rh 51 54 $ cc 1 0 #m32
+    ,rh 51 54 $ harp "f" +| theme
+    ,rh 55 70 $ cc 1 1 #m32
+    ,rh 55 70 $ bassdrum "p" +| note (k "[4]/4" |- 48)
+    ,rh 55 70 $ moog "f" +| note (k "[3 <0!3 2>]/4" |- 24) #legato "[0.5 0.01]"
+    ,rh 55 70 $ harp "f" +| bridge
+    -- ,rh 75 78 $ moog "f" +| note (k "[5 6 0 4]/16" - "[24]*2") #sustain 0.01
+    ,rh 71 74 $ cc 1 0 #m32
+    ,rh 75 78 $ slow 16 $ cc 1 (lfo saw 0 0.6) #m32
+    ,rh 71 78 $ harp "f" +| chorusB
+    ,rh 83 86 $ bassdrum "p" +| note (k "[-2 -1 0 4]/16" |- 48)
+    ,rh 79 82 $ moog "f" +| note (k "[5*4 6*4 0*4 4*4]/16" |- 24) #sustain 0.01
+    ,rh 83 86 $ moog "f" +| note (k "[5 6 0 4]/16" |- 24)
+    ,rh 79 86 $ slow 32 $ cc 1 (lfo saw 0.8 1) #m32
+    ,rh 79 86 $ harp "f" +| chorusB
+    ,rh 87 90 $ meter 89 4 4
+    -- ,rh 87 90 $ bassdrum "p" +| note (k "[0]/16" |- 48)
+    ,rh 87 90 $ cc 1 0 #m32
+    ,rh 87 90 $ harp "ff" +| ysyakhA
+    ,rh 91 94 $ meter 90 4 4
+    -- ,rh 91 94 $ bassdrum "p" +| note (k "[0]/8" |- 48)
+    ,rh 91 94 $ moog "f" +| note (k "[0]/8" |- 24) #sustain 0.01
+    ,rh 91 94 $ slow 16 $ cc 1 (lfo saw 0 0.8) #m32
+    ,rh 91 94 $ harp "fff" +| ysyakhB
+    ,rh 95 98 $ meter 91 4 4
+    -- ,rh 95 98 $ bassdrum "p" +| note (k "[0 0 0 ~]/8" |- 48)
+    ,rh 95 98 $ moog "f" +| note (k "[0 ~]/8" |- 24)
+    ,rh 95 98 $ cc 1 1 #m32
+    ,rh 95 98 $ harp "fff" +| ysyakhC
+    ,rh 99 102 $ meter 92 4 4
+    ,rh 99 102 $ cc 1 0 #m32
+    ,rh 99 102 $ harp "f" +| ysyakhA
+    ,rh 103 106 $ meter 93 4 4
+    -- ,rh 103 106 $ bassdrum "p" +| note (k "[~ 0]/4" |- 48)
+    ,rh 103 106 $ moog "f" +| note (k "[0]/8" |- 24) #sustain 0.01
+    ,rh 103 106 $ slow 16 $ cc 1 (lfo saw 0 0.8) #m32
+    ,rh 103 106 $ harp "fff" +| ysyakhB
+    ,rh 107 110 $ meter 94 4 4
+    -- ,rh 107 110 $ bassdrum "p" +| note (k "[0 0 <0!3 ~> ~]/4" |- 48)
+    ,rh 107 110 $ moog "f" +| note (k "[0@3 ~]/8" |- 24)
+    ,rh 107 110 $ cc 1 1 #m32
+    ,rh 107 110 $ harp "fff" +| ysyakhC
+    ,rh 111 114 $ meter 95 4 4
+    -- ,rh 111 114 $ bassdrum "p" +| note (k "[~ 0]/8" |- 48)
+    ,rh 111 114 $ cc 1 0 #m32
+    ,rh 111 114 $ harp "ff" +| ysyakhA'
+  --
+    ]
+  --
+  ,resetCycles
+  ,hush
+  ]
+
+k = mode (5-7) $ Eb \\\ mMaj
+swing = swingBy 0.04 2
+
+hush'

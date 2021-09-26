@@ -1,0 +1,329 @@
+hush
+
+-- once $ flute "pp ff" +| note "[14 48]*2" #legato 0.8 -- piccolo
+-- once $ flute "pp ff" +| note "[0 33]*2" #legato 0.8
+-- once $ oboe "pp ff" +| note "[-2 31]*2" #legato 0.8
+-- once $ oboe "pp ff" +| note "[-8 24]*2" #legato 0.8 -- cor anglais
+-- once $ clarinet "pp ff" +| note "[-10 31]*2" #legato 0.8
+-- once $ clarinet "pp ff" +| note "[-22 14]*2" #legato 0.8 -- bass clarinet
+-- once $ bassoon "pp ff" +| note "[-26 15]*2" #legato 0.8
+-- once $ horn "pp ff" +| note "[-27 17]*2" #legato 0.8
+-- once $ trumpet "pp ff" +| note "[-8 24]*2" #legato 0.8
+-- once $ trombone "pp ff" +| note "[-8 24]*2" #legato 0.8
+-- once $ trombone "pp ff" +| note "[-26 8]*2" #legato 0.8 -- bass trombone
+-- once $ tuba "pp ff" +| note "[-34 7]*2" #legato 0.8 -- tuba + timpani
+-- once $ tuba "pp ff" +| note "[-6 7]*2" #legato 0.8 -- solo tuba
+-- once $ timpani "pp ff" +| note "[-34 -15]*2" -- tuba + timpani
+-- once $ timpani "pp ff" +| note "[-10 -9 -8]*2" -- snares
+-- once $ violin1 "pp ff" +| note "[-5 43]*2" #legato 0.8
+-- once $ violin2 "pp ff" +| note "[-5 43]*2" #legato 0.8
+-- once $ viola "pp ff" +| note "[-12 33]*2" #legato 0.8
+-- once $ cello "pp ff" +| note "[-24 19]*2" #legato 0.8
+-- once $ doublebass "pp ff" +| note "[-36 -2]*2" #legato 0.8
+
+-- let
+--   -- divisi = 2/3
+--   flute = midiInstrument 1 fllvl
+--   oboe = midiInstrument 2 oblvl
+--   bassoon = midiInstrument 3 bnlvl
+--   horn = midiInstrument 4 hnlvl
+--   trombone = midiInstrument 5 tbnlvl
+--   tuba = midiInstrument 6 tbalvl
+--   pizzicato = midiInstrument 7 pizzlvl
+--   bassdrum = midiInstrument 8 bdlvl
+--   -- harpsichord = midiInstrument 9 bdlvl
+--   harp = midiInstrument 9 bdlvl
+--   -- koala = midiInstrument 11 1
+--   clarinet = midiInstrument 11 cllvl
+--   moog = midiInstrument 12 1
+--   violin1 = midiInstrument 13 vn1lvl
+--   violin2 = midiInstrument 14 vn2lvl
+--   viola = midiInstrument 15 valvl
+--   cello = midiInstrument 16 vclvl
+--   contrabass = midiInstrument 15 dblvl
+
+-- timpani dyn = do
+--   let bars = 1
+--       chan = 6
+--       mult = fromList [(fromIntegral . ceiling) bars] :: Pattern Time
+--       fs   = (timeFuncs mult) ++ []
+--       ps chan = [
+--           ("ffff", note "0" #vel 1 #ch chan),
+--           ("fff", note "0" #vel 0.9 #ch chan),
+--           ("ff", note "0" #vel 0.75 #ch chan),
+--           ("f", note "0" #vel 0.65 #ch chan),
+--           ("mf", note "0" #vel 0.55 #ch chan),
+--           ("mp", note "0" #vel 0.45 #ch chan),
+--           ("p", note "0" #vel 0.40 #ch chan),
+--           ("pp", note "0" #vel 0.35 #ch chan),
+--           ("ppp", note "0" #vel 0.30 #ch chan),
+--           ("pppp", note "0" #vel 0.25 #ch chan)
+--         ]
+--     in ur bars dyn (ps chan) fs #sustain 0.00000001
+  
+-- perc bars pat = do
+--   let --bars = 1
+--       ps = [("tamb", midinote 54 #vel 0.5 #ch 10),
+--            ("crash", midinote 49 #vel 0.5 #ch 10),
+--            ("crash2", midinote 57 #vel 0.5 #ch 10),
+--            ("ride", midinote 51 #vel 0.5 #ch 10),
+--            ("ride2", midinote 59 #vel 0.5 #ch 10),
+--            ("ridebell", midinote 53 #vel 0.5 #ch 10),
+--            ("china", midinote 52 #vel 0.5 #ch 10),
+--            ("splash", midinote 55 #vel 0.5 #ch 10),
+--            ("sidestick", midinote 37 #vel 0.5 #ch 10),
+--            ("snare", midinote 40 #vel 0.5 #ch 10),
+--            ("snare2", midinote 38 #vel 0.5 #ch 10),
+--            ("triopen", midinote 81 #vel 0.5 #ch 10),
+--            ("trimute", midinote 80 #vel 0.5 #ch 10),
+--            ("hatopen", midinote 46 #vel 0.5 #ch 10),
+--            ("hatclosed", midinote 42 #vel 0.5 #ch 10),
+--            ("hatped", midinote 44 #vel 0.5 #ch 10),
+--            ("chimes", midinote 84 #vel 0.5 #ch 10),
+--            ("kick", midinote 36 #vel 0.5 #ch 10),
+--            ("kick2", midinote 55 #vel 0.5 #ch 10),
+--            ("clave", midinote 75 #vel 0.5 #ch 10),
+--            ("clave2", midinote 87 #vel 0.5 #ch 10)
+--           ]
+--       mult = fromList [(fromIntegral . ceiling) bars] :: Pattern Time
+--       fs   = (timeFuncs mult) ++ [
+--                 ("ffff", (#vel 1)),
+--                 ("fff", (#vel 0.9)),
+--                 ("ff", (#vel 0.75)),
+--                 ("f", (#vel 0.65)),
+--                 ("mf", (#vel 0.55)),
+--                 ("mp", (#vel 0.45)),
+--                 ("p", (#vel 0.35)),
+--                 ("pp", (#vel 0.35)),
+--                 ("ppp", (#vel 0.30)),
+--                 ("pppp", (#vel 0.25))
+--                 ]
+--    in ur bars pat ps fs
+
+-- let
+--   fl = ch 1
+--   ob = ch 2
+--   bn = ch 3
+--   hn = ch 4
+--   tbn = ch 5
+--   timp = ch 6
+--   tba = ch 6
+--   pizz = ch 7
+--   bd = ch 8
+--   hp = ch 9
+--   pcn = ch 10
+--   cl = ch 11
+--   m32 = ch 12
+--   vn1 = ch 13
+--   vn2 = ch 14
+--   va = ch 16
+--   vc = ch 15
+--   db = ch 16
+
+-- setcps 0.5
+
+  -- TUTTI
+-- d1 $
+--   slow 4 $
+--   stack[silence
+--     -- ,note "[24,36,48]" #fl
+--     ,note "[12,24]" #ob
+--     ,note "[0,12,24]" #cl
+--     ,note "[-12,-24]" #bn
+--     ,note "[0,7,4,12]" #hn
+--     ,note "[19,16,24]" #tpt
+--     ,note "[0,-12]" #tbn
+--     ,note "[-24,-12]" #tba
+--     ,note "[24]" #vn1
+--     ,note "[24]" #vn2
+--     ,note "[4,12]" #va
+--     ,note "[-12]" #vc
+--     ,note "[-24]" #db
+--     ] |= vel 1
+--       |= legato 0.5
+--       |- note "2"
+
+setcps 0.1
+
+  -- INSTRUMENTS
+do
+  let
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Instrumentation" 
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,program 74 3 #ch 1 -- flute
+    ,program 68 3 #ch 2 -- oboe
+    ,program 70 2 #ch 3 -- bassoon
+    ,program 60 1 #ch 4 -- horn
+    ,program 57 1 #ch 5 -- trombone
+    ,program 60 4 #ch 6 -- timp/tuba
+    ,program 45 3 #ch 7 -- pizz
+    ,program 55 3 #ch 8 -- pitched bass drum / orchestral hit
+    -- ,program 06 1 #ch 9 -- harpsichord
+    ,program 46 3 #ch 9 -- harp
+    ,program 118 3 #ch 10 -- drumkit
+    -- ,program 127 1 #ch 11 -- silence
+    ,program 71 2 #ch 11 -- clarinet
+    ,program 127 1 #ch 12 -- silence
+    ,program 49 0 #ch 13 -- vl1
+    ,program 49 0 #ch 14 -- vl2
+    ,program 43 3 #ch 15 -- vlc
+    ,program 41 1 #ch 16 -- db/vla
+    ]))
+
+let
+  mixScale = 1
+  fllvl = (*mixScale) 0.36 -- ch 1
+  oblvl = (*mixScale) 0.32 -- ch 2
+  bnlvl = (*mixScale) 0.40 -- ch 3
+  hnlvl = (*mixScale) 0.60 -- ch 4
+  tbnlvl = (*mixScale) 0.90 -- ch 5
+  timplvl = (*mixScale) 1.00 -- ch 6
+  pizzlvl = (*mixScale) 0.50 -- ch 7
+  bdlvl = (*mixScale) 1.00 -- ch 8
+  hpslvl = (*mixScale) 0.20 -- ch 9
+  hplvl = (*mixScale) 0.10 -- ch 9
+  perclvl = (*mixScale) 0.70 -- ch 10
+  cllvl = (*mixScale) 0.32 -- ch 11
+  vn1lvl = (*mixScale) 0.40 -- ch 13
+  vn2lvl = (*mixScale) 0.30 -- ch 14
+  vclvl = (*mixScale) 0.50 -- ch 15
+  dblvl = (*mixScale) 0.20 -- ch 16
+
+
+hplvl = (*mixScale) 0.20 -- ch 9
+
+  -- VOLUME
+do 
+  let
+    mixScale = 1
+    x = (*mixScale)
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Proportion"
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,cc 7 (x fllvl) #ch 1 -- flute
+    ,cc 7 (x oblvl) #ch 2 -- oboe
+    ,cc 7 (x bnlvl) #ch 3 -- bassoon
+    ,cc 7 (x hnlvl) #ch 4 -- horn
+    ,cc 7 (x tbnlvl) #ch 5 -- trombone
+    ,cc 7 (x timplvl) #ch 6 -- timp/tuba
+    ,cc 7 (x pizzlvl) #ch 7 -- pizz
+    ,cc 7 (x bdlvl) #ch 8 -- pitched bass drum / orchestral hit
+    ,cc 7 (x hplvl) #ch 9 -- harp
+    -- ,cc 7 (x hpslvl) #ch 9 -- harpsichord
+    ,cc 7 (x perclvl) #ch 10 -- GM drumkit
+    ,cc 7 (x cllvl) #ch 11 -- clarinet
+    -- ,cc 7 (x 0.00) #ch 11 -- silence
+    ,cc 7 (x 0.00) #ch 12 -- silence
+    ,cc 7 (x vn1lvl) #ch 13 -- vn1
+    ,cc 7 (x vn2lvl) #ch 14 -- vn2
+    ,cc 7 (x vclvl) #ch 15 -- vc
+    ,cc 7 (x dblvl) #ch 16 -- db/va
+    ]))
+
+  -- PAN
+do
+  let
+    scale = 1
+    x v = ((v*scale)-(-1))/(1-(-1))
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Positioning"
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,cc 10 (x (-0.2)) #ch 1 -- flute
+    ,cc 10 (x 0.2)  #ch 2 -- oboe
+    ,cc 10 (x 0.25) #ch 3 -- bassoon
+    ,cc 10 (x (-0.4)) #ch 4 -- horn
+    ,cc 10 (x 0.1) #ch 5 -- trombone
+    ,cc 10 (x (-0.3)) #ch 6 -- timp/tuba
+    ,cc 10 (x (0.15)) #ch 7 -- pizz
+    ,cc 10 (x (0.00)) #ch 8 -- pitched bass drum / orchestral hit
+    ,cc 10 (x (-0.2)) #ch 9 -- harsichord
+    ,cc 10 (x (-0.2)) #ch 10 -- GM drumkit
+    ,cc 10 (x (-0.25)) #ch 11 -- clarinet
+    -- ,cc 10 (x 0) #ch 11 -- silence
+    ,cc 10 (x 0) #ch 12 -- silence
+    ,cc 10 (x (-0.8)) #ch 13 -- vn1
+    ,cc 10 (x 0.8) #ch 14 -- vn2
+    ,cc 10 (x 0.3) #ch 15 -- vc
+    ,cc 10 (x (-0.3)) #ch 16 -- db/va
+    ]))
+
+
+  -- REVERB
+do
+  let
+    scale = 1
+    x = (*scale)
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Depth" 
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,cc 91 (x 0.85) #ch 1 -- flute
+    ,cc 91 (x 0.90) #ch 2 -- oboe
+    ,cc 91 (x 0.90) #ch 3 -- bassoon
+    ,cc 91 (x 0.95) #ch 4 -- horn
+    ,cc 91 (x 0.80) #ch 5 -- trombone
+    ,cc 91 (x 0.85) #ch 6 -- timp/tuba
+    ,cc 91 (x 0.90) #ch 7 -- pizz
+    ,cc 91 (x 0.90) #ch 8 -- pitched bass drum / orchestral hit
+    -- ,cc 91 (x 0.90) #ch 9 -- harpsichord
+    ,cc 91 (x 0.95) #ch 9 -- harp
+    ,cc 91 (x 0.85) #ch 10 -- GM drumit
+    ,cc 91 (x 0.85) #ch 11 -- clarinet
+    -- ,cc 91 (x 0.00) #ch 11 -- silence
+    ,cc 91 (x 0.00) #ch 12 -- silence
+    ,cc 91 (x 0.80) #ch 13 -- vn1
+    ,cc 91 (x 0.95) #ch 14 -- vn2
+    ,cc 91 (x 0.85) #ch 15 -- vc
+    ,cc 91 (x 0.95) #ch 16 -- db/va
+    ]))
+
+do
+  let
+    scale = 1
+    x = (*scale)
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Modulation Zero"
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,cc 1 (x 0) #ch 1 -- flute
+    ,cc 1 (x 0) #ch 2 -- oboe
+    ,cc 1 (x 0) #ch 3 -- bassoon
+    ,cc 1 (x 0) #ch 4 -- horn
+    ,cc 1 (x 0) #ch 5 -- trombone
+    ,cc 1 (x 0) #ch 6 -- timp/tuba
+    ,cc 1 (x 0) #ch 7 -- pizz
+    ,cc 1 (x 1) #ch 8 -- pitched bass drum / orchestral hit
+    ,cc 1 (x 0) #ch 9 -- harp
+    -- ,cc 1 (x 0.25) #ch 9 -- harpsichord
+    ,cc 1 (x 0) #ch 10 -- GM drumit
+    -- ,cc 1 (x 0) #ch 11 -- silence
+    ,cc 1 (x 0) #ch 11 -- clarinet
+    ,cc 1 (x 0) #ch 12 -- silence
+    ,cc 1 (x 0.0) #ch 13 -- vn1
+    ,cc 1 (x 0.0) #ch 14 -- vn2
+    ,cc 1 (x 0) #ch 15 -- vc
+    ,cc 1 (x 0) #ch 16 -- db/va
+    ]))
+
+do
+  let
+    scale = 1
+    x = (*scale)
+  mapM_ id $ putStrLn "NanoSynth Orchestra: Exp. Volume" 
+    : (once <$> (zipWith (~>) (pure . (/100) <$> [0..99]) [silence
+    ,cc 11 (x 1) #ch 1 -- flute
+    ,cc 11 (x 1) #ch 2 -- oboe
+    ,cc 11 (x 1) #ch 3 -- bassoon
+    ,cc 11 (x 1) #ch 4 -- horn
+    ,cc 11 (x 1) #ch 5 -- trombone
+    ,cc 11 (x 1) #ch 6 -- timp/tuba
+    ,cc 11 (x 1) #ch 7 -- pizz
+    ,cc 11 (x 1) #ch 8 -- pitched bass drum / orchestral hit
+    ,cc 11 (x 1) #ch 9 -- harpsichord
+    ,cc 11 (x 1) #ch 10 -- GM drumit
+    ,cc 11 (x 1) #ch 11 -- clarinet
+    -- ,cc 11 (x 0) #ch 11 -- silence
+    ,cc 11 (x 0) #ch 12 -- silence
+    ,cc 11 (x 1) #ch 13 -- vn1
+    ,cc 11 (x 1) #ch 14 -- vn2
+    ,cc 11 (x 1) #ch 15 -- vc
+    ,cc 11 (x 1) #ch 16 -- db/va
+    ]))
+
+hush
+
+setcps 1
