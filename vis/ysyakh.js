@@ -41,7 +41,7 @@ initConstellation = () =>
     .blend(src(o1).scale(2),0.25)
     .add(src(o1))
     .mult(shape(4).scale(3))
-    .scale(1.3,)
+    .scale(1.3)
     // .scale(1.3,res)
     // .out(o2)
 //
@@ -76,37 +76,39 @@ src(o0).rotate(() => rand(0.001, 0.01)).scale(1.005).out(o0)
 
 
 hush();render();wait(0)
-  .then(() => initStar().out(o1))
-  .then(() => initBlackhole().scale(2.5).out(o3))
-  .then(() => initSwirl().out(o0))
-  .then(() => wait()) // 10
-  .then(() => swirl())
-  .then(() => wait()) // 60
-  .then(() => swirlAway())
+.then(() => initStar().out(o1))
+.then(() => initBlackhole().scale(2.5).out(o3))
+.then(() => initSwirl().out(o0))
+.then(() => wait()) // 10
+.then(() => swirl())
+.then(() => wait()) // 60
+.then(() => swirlAway())
   .then(() => initConstellation().scale(0.3).out(o2))
+  .then(() => ink().scale(0.9).out(o3))
   .then(() => wait())
   // .then(() => src(o2).scale(0.3).mult(shape(4).scale(1)).out(o3))
-  .then(() => wait())
+  // .then(() => wait())
   .then(() => initStar(0.5,0.1).out(o1))
   .then(() => src(o0).blend(src(o2).rotate(() => (time/6)),0.7).scale(1.2,res).out(o0))
-  .then(() => src(o0).blend(src(o2).rotate(() => (time/6)),0.7).scale(1.2,res).out(o3))
-  .then(() => src(o3).blend(src(o2).rotate(() => (time/6)),0.7).scale(1.2,res).out(o3))
   .then(() => wait())
-  // .then(() => ink())
-  // .then(() => wait())
+  .then(() => src(o3).mult(src(o1).scale(0.8,res)).blend(src(o0).scale(1.1),0.1).out(o0))
+  // .then(() => wait(5))
   // .then(() => swirl())
   // .then(() => wait())
   // .then(() => swirlAway())
-  // .then(() => src(o0).blend(src(o3).rotate(() => (time/6)),0.3).scale(1.4,res).out(o0))
   // .then(() => wait())
-  // .then(() => initSwirl().invert().out(o0))
-  // .then(() => initBlackhole().scale(2.5).out())
-  // .then(() => ())
-  // .then(() => )
+  // .then(() => src(o0).blend(src(o1).invert(),0.1).scale(1.05).out(o0))
+  // .then(() => wait(0.5))
+  // .then(() => src(o0).add(src(o1).invert(),0.001).scale(1.05).out(o0))
+  // .then(() => wait())
+  // .then(() => shape(4,5).invert().out(o0))
+  // .then(() => wait())
 
 // PATTERN APPEAR WITH CONSTELLATION UNDER
 
 // DANCING PATTERN APPEAR WITH COLOUR UNDER
+
+.then(() => src(o0).blend(src(o3).rotate(() => (time/6)),0.3).scale(1.4,res).out(o0))
 
 src(o0).layer(src(o3).luma().invert()).out(o0)
 
@@ -114,11 +116,19 @@ src(o0).layer(src(o3).luma().invert()).out(o0)
 
 ink = () =>
   src(s2)
+    // .modulate(noise(3).add(gradient(),1),0.01)
+    .modulateRotate(shape(999,0.01,2).scale(() => (a.fft[0]*2) + 0.9),3,-1.5)
+    .rotate(()=> time/3)
+    .scale(2,res)
+    .invert()
+    // .out()
+
+  src(s2)
     .rotate(() => time/6)
     .scale(3,res)
-    .invert()
+    // .invert()
     // .blend(src(o2).scale(1.01),0.4)
-    .out(o3)
+    // .out(o0)
 
 inkOverlay = () =>
   src(o3).invert().mult(src(o2).luma()).out(o0)
