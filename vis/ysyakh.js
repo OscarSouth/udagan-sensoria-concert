@@ -14,6 +14,15 @@ src(s2)
   .scale(2,res)
   .out()
 
+
+src(s1)
+  .rotate(()=> Math.sin(time))
+  .modulate(osc(4).kaleid(99).add(gradient(),1).color([1,-1].smooth(),0),() => (a.fft[0]/8))
+  .modulateScale(shape(999,0.00001,4).scale(() => (a.fft[0]*2) + 0.9),3,-1.5)
+  .scale((() => (a.fft[0]*2) + 0.9), res)
+  // .invert()
+  .out()
+
 // CUMULATION
 
 
@@ -40,7 +49,7 @@ initConstellation = () =>
     .repeat(2,2)
     .blend(src(o1).scale(2),0.25)
     .add(src(o1))
-    .mult(shape(4).scale(3))
+    .mult(shape(99,0.1,0.8).scale(2))
     .scale(1.3)
     // .scale(1.3,res)
     // .out(o2)
@@ -75,34 +84,36 @@ src(o0).rotate(() => rand(0.001, 0.01)).scale(1.005).out(o0)
 
 
 
-hush();render();wait(0)
-.then(() => initStar().out(o1))
-.then(() => initBlackhole().scale(2.5).out(o3))
-.then(() => initSwirl().out(o0))
-.then(() => wait()) // 10
-.then(() => swirl())
-.then(() => wait()) // 60
-.then(() => swirlAway())
+hush();render(o0);wait(0)
+  .then(() => initStar().out(o1))
+  .then(() => initBlackhole().scale(2.5).out(o3))
+  .then(() => initSwirl().out(o0))
+  .then(() => wait(10)) // 10
+  .then(() => swirl())
+  .then(() => wait(40)) // 60
+  .then(() => swirlAway())
   .then(() => initConstellation().scale(0.3).out(o2))
-  .then(() => ink().scale(0.9).out(o3))
-  .then(() => wait())
+  .then(() => ink().scale(1.7).out(o3))
+  .then(() => wait(5))
   // .then(() => src(o2).scale(0.3).mult(shape(4).scale(1)).out(o3))
   // .then(() => wait())
   .then(() => initStar(0.5,0.1).out(o1))
-  .then(() => src(o0).blend(src(o2).rotate(() => (time/6)),0.7).scale(1.2,res).out(o0))
+  .then(() => src(o0).blend(src(o2).rotate(() => (time/6)),0.7).scale(1.38,res).out(o0))
+  .then(() => wait(30))
+  .then(() => shape(4,5).out(o0))
+  .then(() => wait(0.05))
+  .then(() => src(o3).mult(src(o1).scale(0.8)).add(src(o0).scale(3).kaleid(2),0.2).add(src(o2).rotate(() => (time/6)),0.9).scale(1.2,res).out(o0))
   .then(() => wait())
-  .then(() => src(o3).mult(src(o1).scale(0.8,res)).blend(src(o0).scale(1.1),0.1).out(o0))
-  // .then(() => wait(5))
-  // .then(() => swirl())
-  // .then(() => wait())
-  // .then(() => swirlAway())
-  // .then(() => wait())
-  // .then(() => src(o0).blend(src(o1).invert(),0.1).scale(1.05).out(o0))
-  // .then(() => wait(0.5))
-  // .then(() => src(o0).add(src(o1).invert(),0.001).scale(1.05).out(o0))
-  // .then(() => wait())
-  // .then(() => shape(4,5).invert().out(o0))
-  // .then(() => wait())
+  .then(() => swirl())
+  .then(() => wait(50))
+  .then(() => swirlAway())
+  .then(() => wait(8))
+  .then(() => src(o0).blend(src(o1).invert(),0.1).scale(1.05).out(o0))
+  .then(() => wait(0.5))
+  .then(() => src(o0).add(src(o1).invert(),0.001).scale(1.05).out(o0))
+  .then(() => wait(0.7))
+  .then(() => shape(4,5).invert().out(o0))
+  .then(() => wait())
 
 // PATTERN APPEAR WITH CONSTELLATION UNDER
 
@@ -119,7 +130,8 @@ ink = () =>
     // .modulate(noise(3).add(gradient(),1),0.01)
     .modulateRotate(shape(999,0.01,2).scale(() => (a.fft[0]*2) + 0.9),3,-1.5)
     .rotate(()=> time/3)
-    .scale(2,res)
+    // .scale(2,res)
+    .scale(2)
     .invert()
     // .out()
 
@@ -132,3 +144,7 @@ ink = () =>
 
 inkOverlay = () =>
   src(o3).invert().mult(src(o2).luma()).out(o0)
+
+
+  // UDAGAN instagram: @saydyy_kuo_fedorova, @oscarsouth
+  // UDAGANuniverse.com -- join our mailing list

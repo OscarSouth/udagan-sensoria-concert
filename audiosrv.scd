@@ -18,7 +18,7 @@ s.reboot {
 		~dirt.start(57120, [2]);
 		~latency = 0.0;
 		MIDIClient.init;
-		MIDIClient.destinations;
+		// MIDIClient.destinations;
 		~midiDIN = MIDIOut.newByName("iConnectAUDIO4+", "iConnectAUDIO4+ MIDI 1");
 		~midiDIN.latency = ~latency;
 		~dirt.soundLibrary.addMIDI(\din, ~midiDIN);

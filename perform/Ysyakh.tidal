@@ -69,70 +69,128 @@ mapM_ id [p "transport" $ do
     ,rh 3 8 $ flute "mp" +| note (k "[4 5]*4" |+ "[0,12]")
     ,rh 5 6 $ clarinet "ppp" +| note (k "[4 2 4 2 1 4 5 4]/8" |+ 12)
     ,rh 7 8 $ clarinet "ppp" +| note (k "[2 [5 4@5] 2 1 -2 1 2 [0 2 0@5]]/8" |+ 12)
-    ,rh 9 16 $ slow 32 $ cc 1 (lfo saw 0.2 0.8) #m32
-    ,rh 9 16 $ bassdrum "p" +| note (k "[3]/4" |- 48)
+--
+    ,rh 9 16 $ clarinet "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 12)
+    ,rh 9 16 $ bassoon "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 9 16 $ bassoon "pp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
+    ,rh 9 16 $ bassdrum "mp" +| note (k "[3]/4" |- 48)
+    ,rh 9 16 $ cello "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 9 16 $ contrabass "ppp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
+--
+    ,rh 17 24 $ violin2 "pppp" +| note (k "[[3,7] ~@3]/4")
+    ,rh 17 24 $ viola "pppp" +| note (k "[[-4] ~@3]/4")
+    ,rh 17 24 $ bassdrum "p" +| note (k "[3]/4" |- 48)
     ,rh 17 24 $ cc 1 0 #m32
     ,rh 17 24 $ moog "p" +| note (k "[3]/4" |- 24) #sustain 0.01
-    ,rh 9 24 $ harp "f" +| theme
+--
+    -- ,rh 9 24 $ harp "f" +| theme
     ,rh 25 26 $ slow 8 $ cc 1 (lfo saw 0.3 0.9) #m32
-    ,rh 25 26 $ harp "f" +| build
+    -- ,rh 25 26 $ harp "f" +| build
     ,rh 25 26 $ moog "f" +| note (k "[5 2 ~ ~]/16" |- 24) #legato 0.01
+    -- ,rh 25 26 $ oboe "pppp" +| note (k "[12 11]/8")
+    ,rh 25 26 $ clarinet "pppp" +| note (k "[9]/4")
+    ,rh 25 26 $ clarinet "pppp" +| note (k "[7 6]/8")
+    ,rh 25 26 $ bassoon "pppp" +| note (k "[5 4]/8")
+    ,rh 25 26 $ horn "mp" +| note (k "[[-2,2] [2,-1]]/8")
+    ,rh 25 26 $ violin1 "pppp" +| note (k "[[5,2] [2,6]]/8" |+ 12)
+    ,rh 25 26 $ violin2 "pppp" +| note (k "[-1 0 1 2]/8")
     ,rh 27 28 $ cc 1 0 #m32
-    ,rh 27 28 $ harp "f" +| theme
+    -- ,rh 27 28 $ harp "f" +| theme
+    ,rh 27 28 $ clarinet "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 12)
+    ,rh 27 28 $ bassoon "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 27 28 $ violin2 "pppp" +| note (k "[[3,7] ~@3]/4")
+    ,rh 27 28 $ viola "pppp" +| note (k "[[-4] ~@3]/4")
     ,rh 29 30 $ moog "f" +| note (k "[5 2 ~ ~]/16" |- 24) #legato 0.01
     ,rh 29 30 $ slow 8 $ cc 7 (lfo saw 0.3 0.9) #m32
-    ,rh 29 30 $ harp "f" +| build
+    -- ,rh 29 30 $ harp "f" +| build
+    -- ,rh 29 30 $ oboe "pppp" +| note (k "[12 11]/8")
+    ,rh 29 30 $ clarinet "pppp" +| note (k "[9]/4")
+    ,rh 29 30 $ clarinet "pppp" +| note (k "[7 6]/8")
+    ,rh 29 30 $ bassoon "pppp" +| note (k "[5 4]/8")
+    ,rh 29 30 $ horn "mp" +| note (k "[[-2,2] [2,-1]]/8")
+    ,rh 29 30 $ violin1 "pppp" +| note (k "[[5,2] [2,6]]/8" |+ 12)
+    ,rh 29 30 $ violin2 "pppp" +| note (k "[-1 0 1 2]/8")
     ,rh 31 34 $ cc 1 0 #m32
-    ,rh 31 32 $ harp "f" +| theme
-    ,rh 33 34 $ harp "f" +| theme'
+    ,rh 31 32 $ clarinet "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 12)
+    ,rh 31 32 $ bassoon "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 31 32 $ cello "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 33 34 $ violin2 "pppp" +| note (k "[[3,7] ~@3]/4")
+    ,rh 33 34 $ viola "pppp" +| note (k "[[-4] ~@3]/4")
+    ,rh 33 34 $ clarinet "ppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 12)
+    ,rh 33 34 $ bassoon "ppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 33 34 $ cello "ppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    -- ,rh 31 32 $ harp "f" +| theme
+    -- ,rh 33 34 $ harp "f" +| theme'
     ,rh 35 50 $ cc 1 1 #m32
     ,rh 35 42 $ moog "f" +| note (k "[5 2 0 4]/16" |- 24) #sustain 0.01
-    ,rh 35 42 $ harp "f" +| chorusA
+    -- ,rh 35 42 $ harp "f" +| chorusA
+    ,rh 35 42 $ oboe "ppp" +| note (k "[12 11@2 9]/16")
+    ,rh 35 42 $ clarinet "pp" +| note (k "[9@3 ~]/16")
+    ,rh 35 42 $ clarinet "pp" +| note (k "[7 6 7 8]/16")
+    ,rh 35 42 $ bassoon "pp" +| note (k "[5 4 0 -1]/16")
+    ,rh 35 42 $ violin1 "ppp" +| note (k "[[5,2] [2,6] [2,7] [2,6]]/16" |+ 12)
     ,rh 43 50 $ moog "f" +| note (k "[5 6 0 4]/16" |- 24)
-    ,rh 43 50 $ harp "f" +| chorusB
+    -- ,rh 43 50 $ harp "f" +| chorusB
+    ,rh 43 50 $ oboe "ppp" +| note (k "[14 13 11 9]/16")
+    ,rh 43 50 $ clarinet "pp" +| note (k "[9 8 9 ~]/16")
+    ,rh 43 50 $ clarinet "pp" +| note (k "[7 6 7 8]/16")
+    ,rh 43 50 $ bassoon "pp" +| note (k "[5 3 0 -1]/16")
+    ,rh 43 50 $ violin1 "ppp" +| note (k "[[5,2] [3,6] [2,7] [2,6]]/16" |+ 12)
+    ,rh 43 50 $ horn "mp" +| note (k "[[-2,2] [2,-1] [0,2] [-1,2]]/16")
+    ,rh 43 50 $ violin2 "ppp" +| note (k "[-1@2 1 @3 ~]/16")
+    ,rh 43 50 $ bassoon "ppp" +| note (k "[[5,9] ~@3 . [-1,3] ~@3 . [0,4] ~@3 . [-3,1] ~@3]/16" |- 24)
+    ,rh 43 50 $ cello "ppp" +| note (k "[[5,9] ~@3 . [-1,3] ~@3 . [0,4] ~@3 . [-3,1]]/16" |- 24)
+    ,rh 43 50 $ bassoon "ppp" +| note (k "[5 6 0 7]/16" |- 36)
+    ,rh 43 50 $ contrabass "ppp" +| note (k "[5 6 0 7]/16" |- 36)
     ,rh 51 54 $ cc 1 0 #m32
-    ,rh 51 54 $ harp "f" +| theme
+    -- ,rh 51 54 $ harp "f" +| theme
+    ,rh 51 54 $ clarinet "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 12)
+    ,rh 51 54 $ bassoon "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 51 54 $ bassoon "pp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
+    ,rh 51 54 $ bassdrum "pp" +| note (k "[3]/4" |- 48)
+    ,rh 51 54 $ cello "pppp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~]]/8" |- 24)
+    ,rh 51 54 $ contrabass "pp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
     ,rh 55 70 $ cc 1 1 #m32
-    ,rh 55 70 $ bassdrum "p" +| note (k "[4]/4" |- 48)
+    ,rh 55 70 $ bassdrum "mp" +| note (k "[4]/4" |- 48)
     ,rh 55 70 $ moog "f" +| note (k "[3 <0!3 2>]/4" |- 24) #legato "[0.5 0.01]"
     ,rh 55 70 $ harp "f" +| bridge
     -- ,rh 75 78 $ moog "f" +| note (k "[5 6 0 4]/16" - "[24]*2") #sustain 0.01
     ,rh 71 74 $ cc 1 0 #m32
     ,rh 75 78 $ slow 16 $ cc 1 (lfo saw 0 0.6) #m32
     ,rh 71 78 $ harp "f" +| chorusB
-    ,rh 83 86 $ bassdrum "p" +| note (k "[-2 -1 0 4]/16" |- 48)
+    ,rh 83 86 $ bassdrum "mf" +| note (k "[-2 [-1 . -1*2] 0 [4 . 4*2]]/16" |- 48)
     ,rh 79 82 $ moog "f" +| note (k "[5*4 6*4 0*4 4*4]/16" |- 24) #sustain 0.01
     ,rh 83 86 $ moog "f" +| note (k "[5 6 0 4]/16" |- 24)
     ,rh 79 86 $ slow 32 $ cc 1 (lfo saw 0.8 1) #m32
     ,rh 79 86 $ harp "f" +| chorusB
-    ,rh 87 90 $ meter 89 4 4
+    ,rh 87 90 $ meter 90 4 4
     -- ,rh 87 90 $ bassdrum "p" +| note (k "[0]/16" |- 48)
     ,rh 87 90 $ cc 1 0 #m32
     ,rh 87 90 $ harp "ff" +| ysyakhA
-    ,rh 91 94 $ meter 90 4 4
-    -- ,rh 91 94 $ bassdrum "p" +| note (k "[0]/8" |- 48)
+    ,rh 91 94 $ meter 91 4 4
+    ,rh 91 94 $ bassdrum "p" +| note (k "[0]/8" |- 48)
     ,rh 91 94 $ moog "f" +| note (k "[0]/8" |- 24) #sustain 0.01
     ,rh 91 94 $ slow 16 $ cc 1 (lfo saw 0 0.8) #m32
     ,rh 91 94 $ harp "fff" +| ysyakhB
-    ,rh 95 98 $ meter 91 4 4
-    -- ,rh 95 98 $ bassdrum "p" +| note (k "[0 0 0 ~]/8" |- 48)
+    ,rh 95 98 $ meter 92 4 4
+    ,rh 95 98 $ bassdrum "p" +| note (k "[0 0 0 ~]/8" |- 48)
     ,rh 95 98 $ moog "f" +| note (k "[0 ~]/8" |- 24)
     ,rh 95 98 $ cc 1 1 #m32
     ,rh 95 98 $ harp "fff" +| ysyakhC
-    ,rh 99 102 $ meter 92 4 4
+    ,rh 99 102 $ meter 93 4 4
     ,rh 99 102 $ cc 1 0 #m32
     ,rh 99 102 $ harp "f" +| ysyakhA
-    ,rh 103 106 $ meter 93 4 4
-    -- ,rh 103 106 $ bassdrum "p" +| note (k "[~ 0]/4" |- 48)
+    ,rh 103 106 $ meter 94 4 4
+    ,rh 103 106 $ bassdrum "p" +| note (k "[~ 0]/4" |- 48)
     ,rh 103 106 $ moog "f" +| note (k "[0]/8" |- 24) #sustain 0.01
     ,rh 103 106 $ slow 16 $ cc 1 (lfo saw 0 0.8) #m32
     ,rh 103 106 $ harp "fff" +| ysyakhB
-    ,rh 107 110 $ meter 94 4 4
-    -- ,rh 107 110 $ bassdrum "p" +| note (k "[0 0 <0!3 ~> ~]/4" |- 48)
+    ,rh 107 110 $ meter 96 4 4
+    ,rh 107 110 $ bassdrum "p" +| note (k "[0 0 <0!3 ~> ~]/4" |- 48)
     ,rh 107 110 $ moog "f" +| note (k "[0@3 ~]/8" |- 24)
     ,rh 107 110 $ cc 1 1 #m32
     ,rh 107 110 $ harp "fff" +| ysyakhC
-    ,rh 111 114 $ meter 95 4 4
+    ,rh 111 114 $ meter 96 4 4
     -- ,rh 111 114 $ bassdrum "p" +| note (k "[~ 0]/8" |- 48)
     ,rh 111 114 $ cc 1 0 #m32
     ,rh 111 114 $ harp "ff" +| ysyakhA'
@@ -143,7 +201,56 @@ mapM_ id [p "transport" $ do
   ,hush
   ]
 
-k = mode (5-7) $ Eb \\\ mMaj
-swing = swingBy 0.04 2
+
+hush'
+
+-- INTRO
+
+d1 $ do
+  let
+    k = mode (5-7) $ Eb \\\ mMaj
+    swing = swingBy 0.04 2
+    rh a b = id
+  stack [silence
+    ,rh 9 16 $ swing $ clarinet "pp" +| note (k "[~ [~@2 -1 0] ~ [-3 -2 -1 ~] . ~ [~@2 -1 0] ~ [-3 . -5 ~]]/8")
+    ,rh 9 16 $ swing $ violin2 "pp" +| note (k "[[[3,7] ~@6 7] ~ ~ [4 5 6@2] . [[3,7] ~@6 7] ~ ~ [4 2]]/8")
+    ,rh 9 16 $ swing $ viola "pp" +| note (k "[[~@7 0] ~ [~ -1 -2 ~] ~]/4")
+    ,rh 9 16 $ swing $ cello "pp" +| note (k "[[~@7 0] ~ ~ [-3 -2 -1 ~] . [~@7 0] ~ ~ [-3 . -5 ~]]/8")
+    ,rh 9 16 $ bassoon "pp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~ 2]]/8" |- 24)
+    ,rh 9 16 $ cello "pp" +| note (k "[[3,7] ~@3 . 3 ~@2 [~ 2]]/8" |- 24)
+    ,rh 9 16 $ bassoon "mp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
+    ,rh 9 16 $ bassdrum "p" +| note (k "[3]/4" |- 48)
+    ,rh 9 16 $ contrabass "mp" +| note (k "[3 ~@3 . 3 ~@2 [~ 2]]/8" |- 36)
+    ]
+      -- >> silence
+
+-- VERSE
+
+d1 $ do
+  let
+    k = mode (5-7) $ Eb \\\ mMaj
+    swing = swingBy 0.04 2
+    rh a b = id
+  stack [silence
+    ,rh 43 50 $ oboe "ppp" +| note (k "[14 13 11 9]/16")
+    ,rh 43 50 $ clarinet "pp" +| note (k "[9 8 9 ~]/16")
+    ,rh 43 50 $ clarinet "pp" +| note (k "[7 6 7 8]/16")
+    ,rh 43 50 $ bassoon "pp" +| note (k "[5 3 0 -1]/16")
+    ,rh 43 50 $ violin1 "ppp" +| note (k "[[5,2] [3,6] [2,7] [2,6]]/16" |+ 12)
+    ,rh 43 50 $ horn "mp" +| note (k "[[-2,2] [2,-1] [0,2] [-1,2]]/16")
+    ,rh 43 50 $ violin2 "ppp" +| note (k "[-1@2 1 @3 ~]/16")
+    ,rh 43 50 $ bassoon "ppp" +| note (k "[[5,9] ~@3 . [-1,3] ~@3 . [0,4] ~@3 . [-3,1] ~@3]/16" |- 24)
+    ,rh 43 50 $ cello "ppp" +| note (k "[[5,9] ~@3 . [-1,3] ~@3. [0,4] ~@3, [-3,1]]/16" |- 24)
+    ,rh 43 50 $ bassoon "ppp" +| note (k "[5 6 0 7]/16" |- 36)
+    ,rh 43 50 $ contrabass "ppp" +| note (k "[5 7 0 7]/16" |- 36)
+    -- ,rh 35 42 $ bassdrum "p" +| note (k "[5 2]/8" |- 48)
+    ]
+      -- >> silence
+
+-- BRIDGE
+
+
+-- YSYAKH
+
 
 hush'
