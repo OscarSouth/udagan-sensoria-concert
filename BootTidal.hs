@@ -348,7 +348,8 @@ va = ch 16
 vc = ch 15
 db = ch 16
 
-panic = setCC "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" 123 1 >> hush'
+allNotesOff = setCC "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" 123 1
+panic = allNotesOff >> hush'
 hush'' = panic
 
 :{
