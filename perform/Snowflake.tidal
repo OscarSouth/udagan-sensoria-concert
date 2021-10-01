@@ -1,44 +1,6 @@
-setcps (66/180)
+allNotesOff
 
--- mapM_ id [p "transport" $ do
---   let
---     out = 55
---     k = mode (5-7) $ F \\\ mMaj
---     intro = note (k "[4 6 7 8 7 6]/2" |- 12)
---     verse = note (k "[[4 6 7 8 9 6], [-7 -5]/4]/2" |- 12)
---     verse' = note (k "[[[4, 13] 6 8], [-3]/2]" |- 12)
---     chorus = note (k "[[<4!2 3!2 2!2 3!2> 7 8 9 8 7], [-12 -15 -9 -15]/8]/2" |- 12)
---   --
---   seqPLoop $ sync out ++ [runSeq
---     ,rh 1 28 $ meter 66 6 4, rh 0 0 $ meter (66/2) 4 4
---     ,rh 0 0 $ sidestick "x*2" |+ vel "[1 0.4!3]/2"
---     ,rh 1 2 $ harp "p" +| intro
---     ,rh 3 6 $ harp "mf" +| verse
---     ,rh 7 7 $ harp "f" +| verse'
---     ,rh 8 8 $ harp "mp" +| intro
---     ,rh 9 12 $ harp "ff" +| chorus
---     ,rh 13 14 $ harp "mp" +| intro
---     ,rh 15 18 $ harp "mf" +| verse
---     ,rh 19 19 $ harp "f" +| verse'
---     ,rh 20 24 $ harp "mf" +| verse
---     ,rh 25 25 $ harp "f" +| verse'
---     ,rh 26 26 $ harp "mp" +| intro
---     ,rh 27 34 $ harp "ff" +| chorus
---     ,rh 35 36 $ harp "p" +| intro
---     ,rh 37 40 $ harp "mf" +| verse
---     ,rh 41 41 $ harp "f" +| verse'
---     ,rh 42 45 $ harp "mf" +| verse
---     ,rh 46 46 $ harp "f" +| verse'
---     ,rh 47 47 $ harp "mp" +| intro
---     ,rh 48 55 $ harp "ff" +| chorus
---   --
---     ]
---   --
---   ,resetCycles
---   ,hush
---   ]
-
-hush''
+setcps (66/90)
 
 mapM_ id [p "transport" $ do
   let
@@ -250,7 +212,8 @@ mapM_ id [p "transport" $ do
   --
     ]
   --
-  -- ,resetCycles
+  ,resetCycles
+  ,setcps (66/90)
   ,hush
   ]
 

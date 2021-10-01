@@ -326,6 +326,7 @@ perc bars pat = do
 
 
 sidestick pat = midinote (pat |= 37) #ch 10
+tamb pat = midinote (pat |= 54) #ch 10
 
 :}
 
