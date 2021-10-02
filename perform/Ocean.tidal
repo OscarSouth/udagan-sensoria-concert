@@ -133,6 +133,7 @@ mapM_ id [p "transport" $ do
   --
   ,resetCycles
   ,setcps (77/60)
+  ,allNotesOff
   ,hush
   ]
 
