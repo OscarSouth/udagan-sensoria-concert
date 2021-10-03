@@ -6,7 +6,7 @@ d1 $ stack [silence
   ,harp "f" +| note (mode 5 key "0 4 -2 -1" - 12)
   ,harp "p" +| note (mode 5 key "0 4 -2 -1" - 24)
 ]
- 
+
 d1 $ stack [silence
   ,harp "f" +| note (mode 5 key "~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4")
   ,harp "f" +| note (mode 5 key "5*8" - 12)
@@ -22,12 +22,12 @@ d1 $ stack [silence
 hush
 
 mapM_ id [p "transport" $ do
-  let 
+  let
     out = 16
     key = mode 5 $ D \\\ mMaj
     key' = B \\\ hMin
-  -- 
-  seqPLoop $ sync out ++ [runSeq 
+  --
+  seqPLoop $ sync out ++ [runSeq
     ,rh 0 0 $ meter 80 4 4
     ,rh 0 0 $ harp "mf" +| note (key "[~ . ~ . ~ . ~!3 4]/4")
     ,rh 1 8 $ harp "mf" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
@@ -43,7 +43,7 @@ mapM_ id [p "transport" $ do
     ,rh 16 16 $ harp "f" +| note (key' "[6*4]/4" |- "[12,24]")
     ,rh 17 24 $ harp "mf" +| note (key "[~ 0 . ~ 2 ~ 3 . ~ 2 . ~ 0 ~ 4]/4")
     ,rh 17 24 $ harp "mf" +| note (key "[0 4 -2 -1]/4" |- "[12,24]")
-  -- 
+  --
     ]
   --
   ,resetCycles
@@ -62,15 +62,17 @@ hhc pat = midinote (pat |= 42) #ch 10
 hho pat = midinote (pat |= 46) #ch 10
 hhp pat = midinote (pat |= 44) #ch 10
 snare pat = midinote (pat |= 40) #ch 10
+snare' pat = midinote (pat |= 38) #ch 10
 tamb pat = midinote (pat |= 54) #ch 10
 cp pat = midinote (pat |= 39) #ch 10
 china pat = midinote (pat |= 52) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
-sidestick pat = midinote (pat |= 37) #ch 10
+splash pat = midinote (pat |= 55) #ch 10
+chimes pat = midinote (pat |= 84) #ch 10
+triopen pat = midinote (pat |= 81) #ch 10
+trimute pat = midinote (pat |= 80) #ch 10
+crash pat = midinote (pat |= 49) #ch 10
+crash' pat = midinote (pat |= 57) #ch 10
+
 sidestick pat = midinote (pat |= 37) #ch 10
 sidestick pat = midinote (pat |= 37) #ch 10
 sidestick pat = midinote (pat |= 37) #ch 10

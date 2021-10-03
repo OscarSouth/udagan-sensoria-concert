@@ -5,7 +5,7 @@ src(s2)
   .modulateRotate(shape(999,0.01,2).scale(() => (a.fft[0]*2) + 0.9),3,-1.5)
   .rotate(()=> time/3)
   .scale(2,res)
-  .invert()
+  // .invert()
   .out()
 
 // DEVELOPMENT
@@ -20,7 +20,7 @@ src(s1)
   .modulate(osc(4).kaleid(99).add(gradient(),1).color([1,-1].smooth(),0),() => (a.fft[0]/8))
   .modulateScale(shape(999,0.00001,4).scale(() => (a.fft[0]*2) + 0.9),3,-1.5)
   .scale((() => (a.fft[0]*2) + 0.9), res)
-  // .invert()
+  .invert()
   .out()
 
 // CUMULATION
@@ -147,4 +147,22 @@ inkOverlay = () =>
 
 
   // UDAGAN instagram: @saydyy_kuo_fedorova, @oscarsouth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // UDAGANuniverse.com -- join our mailing list

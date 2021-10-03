@@ -11,9 +11,9 @@ mapM_ id [p "transport" $ do
     verse' = note (k "[[4, 13] 6 8]" |- 12)
     chorus = note (k "[<4!2 3!2 2!2 3!2> 7 8 9 8 7]/2" |- 12)
   --
-  seqPLoop $ sync out ++ [runSeq
+  seqP $ sync out ++ [runSeq
     ,rh 1 28 $ meter 66 6 4, rh 0 0 $ meter (66/8) 4 4
-    -- ,rh 1 58 $ sidestick "[x*3]/2" |+ vel "[1 0.4!3]/2"
+    ,rh 1 12 $ sidestick "[x*3]/2" |+ vel "[1 0.4!3]/2"
     ,rh 0 0 $ contrabass "pp" +| note (k "[7@2 8@2 [9@7 ~] 7@2 6 1 [4@7 ~] 2@2 1 4@9]/4" |- 36)
     ,rh 0 0 $ cello "pp" +| note (k "[7@2 8@2 [9@7 ~] 7@2 6 1 [4@7 ~] 2@2 1 4@9]/4" |- 24)
     ,rh 0 0 $ harp "pp" +| note (k "[~@3 [4 6 7 8 7 6]*2]/4" |+ 12)
@@ -42,7 +42,7 @@ mapM_ id [p "transport" $ do
     ,rh 7 7 $ horn "ppp" +| note (k "[13 6 8]" |- 12)
     ,rh 7 7 $ trombone "pp" +| note (k "[4]/4" |- 24)
     ,rh 7 7 $ bassoon "p" +| note (k "[1]/4" |- 12)
-    ,rh 8 8 $ horn "pp" +| note (k "[0]/4")
+    ,rh 8 8 $ horn "pppp" +| note (k "[0]/4")
     ,rh 8 8 $ moog "mf" +| note (k "[-7]/4" |- 12) #sustain 0.01
     ,rh 8 8 $ harp "pp" +| note (k "[4 6 7 8 7 6]/2") #sustain 10
     ,rh 8 8 $ pizzicato "pp" +| intro
@@ -214,6 +214,7 @@ mapM_ id [p "transport" $ do
   --
   ,resetCycles
   ,setcps (66/90)
+  ,allNotesOff
   ,hush
   ]
 
