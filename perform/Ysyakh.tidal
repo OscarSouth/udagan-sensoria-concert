@@ -251,6 +251,7 @@ mapM_ id [p "transport" $ do
     ]
   --
   ,resetCycles
+  ,once assigncc1
   ,allNotesOff
   ,setcps (88/60)
   ,hush
