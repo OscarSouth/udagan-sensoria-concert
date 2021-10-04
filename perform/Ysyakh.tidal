@@ -7,7 +7,7 @@ mapM_ id [p "transport" $ do
   let
     out = 114
     k = mode (5-7) $ Eb \\\ mMaj
-    ysyakhDynamic = 1.6
+    ysyakhDynamic = (slow 4 $ lfo saw 1.4 1.7)
     swing = swingBy 0.04 2
     theme = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . <[4 5 6 ~] [4 [-5,2]]>]/4" |- 12)
     theme' = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . [4 [-5,2]]]/4" |- 12)

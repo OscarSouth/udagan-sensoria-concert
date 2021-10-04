@@ -67,7 +67,7 @@ fractal_fade = (size) => src(s0)
   //
   // dancing snowflake
 snow_flake = (size) => src(s0)
-  .rotate([0,3.14].fast(1.25))
+  .rotate([0,3.14].fast(2))
   .scale(size)
   .scale(2,res)
   // .modulate(noise().scale(866).color(0.5,0), () => (time%1*0.01).slow(4), 0.1)
@@ -88,9 +88,7 @@ pixel_snow = () => src(s0)
   .out(o0)
   //
 
-pixel_snow()
-
-// hush();render(o0)
+  // hush();render(o0)
 wait(32)
   .then(() => snow_flake(1.6))
   .then(() => wait(58))
@@ -132,7 +130,7 @@ wait(32)
   .then(() => wait(0.05))
   .then(() => pixel_snow())
   .then(() => wait(120))
-  .then(() => snow_flake(1))
+  .then(() => snow_flake(1.3))
 
 
 
