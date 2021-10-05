@@ -7,7 +7,7 @@ mapM_ id [p "transport" $ do
   let
     out = 114
     k = mode (5-7) $ Eb \\\ mMaj
-    ysyakhDynamic = (slow 4 $ lfo saw 1.4 1.7)
+    ysyakhDynamic = (slow 12 $ lfo saw 1.2 1.5)
     swing = swingBy 0.04 2
     theme = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . <[4 5 6 ~] [4 [-5,2]]>]/4" |- 12)
     theme' = swing $ note (k "[[-4,3]@3 7 . ~!2 6 7  . ~ 6 5 ~ . [4 [-5,2]]]/4" |- 12)
@@ -103,17 +103,6 @@ mapM_ id [p "transport" $ do
     ,rh 55 70 $ moog "f" +| note (k "[3 <0!3 2>]/4" |- 24) #legato "[0.5 0.01]"
     ,rh 55 70 $ swing $ tamb "[~ x]" #vel 0.1 |+ humanise 0.15
     ,rh 63 70 $ swing $ pizzicato "p" +| note (k "[[7@3 [5,12]] [[~ 7] 4] . <[4 9 [3,10] 4]!3 [~]>]/4" |- 12) |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ timpani "p" +| note (k "[[~@3 12] [[~ 7] 11] . <~!3 [~ 9 [12 11 9] 10]>]/4" |- 36) |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ pizzicato "p" +| note (k "[[7@3 [5,12]] [[~ 7] 4] . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>]/4" |- 12) |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ timpani "p" +| note (k "[[~@3 12] [[~ 7] 11] . 4 ]/4" |- 36) |+ humanise 0.1
-    -- ,rh 55 70 $ swing $ pizzicato "p" +| note (k "[[7@3 [5,12]] [[~ 7] 4] . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>]/4" |- 12) |+ humanise 0.1
-    -- ,rh 55 70 $ swing $ timpani "mp" +| note (k "[[~@3 12] [[~ 7] 11] . 4 ]/4" |- 36) |+ humanise 0.1
-    -- ,rh 55 70 $ swing $ pizzicato "p" +| note (k "[[7@3 [5,12]] [[~ 7] 4] . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>]/4" |- 12) |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ timpani "f" +| note (k "[[~@3 12] [[~ ~] 11] . <[~ 9 ~ 11]!3 [~ 9 [12 11 9] 10]>]/4" |- 36) |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ pizzicato "mp" +| note (k "[[7@3 [5,12]] [[~ 7] 4] . <[~ ~ [3,10] 4]!3 [~ ~ ~ 10]>]/4" |- 12) |+ humanise 0.1
-    -- ,rh 55 70 $ swing $ tamb "[~ x]" #vel 0.1 |+ humanise 0.2 |* vel (slow 16 $ lfo saw 0.7 1)
-    -- ,rh 59 70 $ swing $ tamb "[~ . ~@2 x x]/4" #vel 0.15 |+ humanise 0.1
-    -- ,rh 63 70 $ swing $ tamb "[~@3 x ~@2 x ~ . ~]/4" #vel 0.2 |+ humanise 0.1
     ,rh 55 70 $ swing $ horn "mp" +| note (k "[~ [3,7]!2 [7]@5]/4" |- 12) |* vel (slow 64 $ lfo saw 0.6 1)
     ,rh 55 70 $ swing $ horn "mf" +| note (k "[~ [0]]/4" |- 12) |* vel (slow 64 $ lfo saw 0.6 1)
     ,rh 55 70 $ swing $ horn "p" +| note (k "[~@5 [2,7] [3,7] [4,7]]/4") |* vel (slow 64 $ lfo saw 0.6 1)
@@ -124,34 +113,22 @@ mapM_ id [p "transport" $ do
     ,rh 63 70 $ cello "ppp" +| note (k "[[3,7] ~@3 . ~]/4" |- 24)
     ,rh 67 70 $ bassoon "pppp" +| note (k "[3 ~@3 . <0!3 2>]/4" |- 36)
     ,rh 67 70 $ swing $ clarinet "pppp" +| note (k "[7@3 12@3 11@2 . <[4 9 10 11]!3 [6 9 [12 11 9] 10]>]/4")
---
-    -- ,rh 55 70 $ cc 1 1 #m32
-    -- ,rh 55 70 $ bassdrum "mp" +| note (k "[4]/4" |- 48)
-    -- ,rh 55 70 $ moog "f" +| note (k "[3 <0!3 2>]/4" |- 24) #legato "[0.5 0.01]"
-    -- ,rh 55 70 $ pizzicato "pp" +| bridge
-    -- ,rh 75 78 $ moog "f" +| note (k "[5 6 0 4]/16" - "[24]*2") #sustain 0.01
     ,rh 71 74 $ cc 1 0 #m32
     ,rh 75 78 $ slow 16 $ cc 1 (lfo saw 0 0.6) #m32
-    -- ,rh 71 78 $ harp "f" +| chorusB
     ,rh 83 86 $ bassdrum "mp" +| note (k "[-2 -1 0 4]/16" |- 48)
-    -- ,rh 83 86 $ bassdrum "mf" +| note (k "[-2 [-1 . -1*2] 0 [4 . 4*2]]/16" |- 48)
     ,rh 79 82 $ moog "f" +| note (k "[5*4 6*4 0*4 4*4]/16" |- 24) #sustain 0.01
     ,rh 83 86 $ moog "f" +| note (k "[5 6 0 4]/16" |- 24)
     ,rh 79 86 $ slow 32 $ cc 1 (lfo saw 0.8 1) #m32
-    -- ,rh 79 86 $ harp "f" +| chorusB
-    ,rh 71 78 $ violin1 "pp" +| note (k "[5 6 [4@3 2@2 1@2] 1 ]/16" |+ 12) |* vel (slow 4 $ lfo saw 0.5 1)
-    -- ,rh 71 78 $ oboe "pppp" +| note (k "[14 13 [11 . 10 9] 8]/16")
-    ,rh 71 82 $ clarinet "pppp" +| note (k "[9 8 9 [10 9]]/16") |* vel (slow 4 $ lfo saw 0.1 0.6)
-    ,rh 71 78 $ clarinet "pppp" +| note (k "[7 6 7 8]/16") |* vel (slow 4 $ lfo saw 0.1 0.6)
+    ,rh 71 78 $ violin1 "pp" +| note (k "[5 6 [4@3 2@2 1@2] 1 ]/16" |+ 12) |* vel (slow 8 $ lfo saw 0.5 1)
+    ,rh 71 82 $ clarinet "pppp" +| note (k "[9 8 9 [10 9]]/16") |* vel (slow 8 $ lfo saw 0.1 0.6)
+    ,rh 71 78 $ clarinet "pppp" +| note (k "[7 6 7 8]/16") |* vel (slow 8 $ lfo saw 0.1 0.6)
     ,rh 71 78 $ bassoon "ppp" +| note (k "[5 3 0 -1]/16") |* vel (slow 4 $ lfo saw 0.5 0.9)
-    -- ,rh 75 78 $ violin1 "ppp" +| note (k "[[5,2] [3,6] [2,7] [2,6]]/16" |+ 12)
     ,rh 83 86 $ oboe "pppp" +| note (k "[14 13 [11@3 [10 9]] 8]/16")
     ,rh 79 86 $ clarinet "pp" +| note (k "[9@3 ~]/16")
     ,rh 83 86 $ clarinet "pp" +| note (k "[7 6 7 8]/16")
     ,rh 79 86 $ bassoon "pp" +| note (k "[5 3 0 -1]/16")
     ,rh 83 86 $ violin1 "pp" +| note (k "[[5,2] [3,6] [2,7] [2,6]]/16" |+ 12)
     ,rh 79 86 $ horn "p" +| note (k "[[-2,2] [-8,-4] [-7,-3] [-3,1]]/16")
-    -- ,rh 43 50 $ horn "p" +| note (k "[[-2,2] [2,-1] [0,2] [-3,-1 1]]/16")
     ,rh 79 86 $ violin1 "pp" +| note (k "[5 6 [4@3 2] 1 ]/16" |+ 12)
     ,rh 79 86 $ violin2 "ppp" +| note (k "[-1@5 1@4 0@4 ~@3]/16")
     ,rh 79 86 $ bassoon "ppp" +| note (k "[[5,9] ~@3 . [-1,3] ~@3 . [0,4] ~@3 . [4,8] ~@3]/16" |- 24)
@@ -183,7 +160,6 @@ mapM_ id [p "transport" $ do
     ,rh 95 98 $ timpani "pp" +| note (k "[0]/4" |- 24)  |* vel ysyakhDynamic
     ,rh 95 98 $ bassdrum "mf" +| note (k "[0]/8" |- 48) |* vel ysyakhDynamic
     ,rh 95 98 $ moog "f" +| note (k "[0@2 ~@3]/8" |- 24) |* vel ysyakhDynamic
-    -- ,rh 95 98 $ swing $ flute "ppp" +| note (k "[9 11 . [10 11 10 7] ~ . ~ . ~ . 9 11 . [10 11 10 7] ~ . ~ . ~]/8" |+ 12) |* vel ysyakhDynamic
     ,rh 95 98 $ swing $ oboe "pppp" +| note (k "[9 11 . [10 11 10 7] ~ . ~ . ~ . 9 11 . [10 11 10 7] ~ . ~ . ~]/8"|- 12) |* vel ysyakhDynamic
     ,rh 95 98 $ swing $ violin1 "ppp" +| note (k "[0 ~]/4" |+ 24) |* vel ysyakhDynamic
     ,rh 95 98 $ swing $ violin2 "pppp" +| note (k "[0 ~]/4" |+ 12) |* vel ysyakhDynamic
@@ -256,5 +232,32 @@ mapM_ id [p "transport" $ do
   ,setcps (88/60)
   ,hush
   ]
+
+hush''
+
+  -- UDAGANuniverse.com -- UDAGAN instagram: @saydyy_kuo_fedorova, @oscarsouth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -- Buy this inking at etsy.com/shop/UDAGANuniverse
 
 hush''

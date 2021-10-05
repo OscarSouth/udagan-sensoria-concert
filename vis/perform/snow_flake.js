@@ -33,7 +33,9 @@ a.setSmooth(0.92)
 a.setCutoff(3)
 a.hide()
 
-  //// SNOWFLAKE
+  // SNOW FLAKE, by Saydyy Kuo
+  // Buy the the original inking at etsy.com/shop/UDAGANuniverse
+
   // INITIAL STATE
 src(s0)
   // .scale(size)
@@ -133,23 +135,27 @@ wait(32)
   .then(() => snow_flake(1.3))
 
 
+  // UDAGANuniverse.com // UDAGAN instagram: @saydyy_kuo_fedorova, @oscarsouth
 
 
-pixel_snow()
 
 
-a.setSmooth(0.9)
-a.setBins(3)
-src(s1)
-  .rotate(() => time/4)
-  .blend(s1,0.8)
-  .scale( ()=>Math.sin(time/40))
-  .pixelate([64,80,108],[48,60,72])
-  .scale(() => (a.fft[0]*2+2),res)
-  // .invert([0,1])
-  .diff(src(s1))
-  .thresh( ({time})=>Math.sin(time/2)+1 , [0.04,0.25,0.75,1].fast(0.25) )
-  // .scale(1.1, res)
-  .kaleid(4)
-  .add(src(s1).invert().rotate(({time}) => Math.sin(time/20)).scale(2,res))
-  .out()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Buy this inking at etsy.com/shop/UDAGANuniverse

@@ -15,8 +15,9 @@ noise(saw(5,10,8),0.1).out(o0)
 osc(1,1,2).invert(sq(0,1,8)).out(o0)
 
 
-
 shape().out()
+
+render()
 
 src(s3).invert()
   .layer(shape(2).invert().luma())
