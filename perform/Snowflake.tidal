@@ -13,7 +13,7 @@ mapM_ id [p "transport" $ do
   --
   seqP $ sync out ++ [runSeq
     ,rh 1 28 $ meter 66 6 4, rh 0 0 $ meter (66/8) 4 4
-    ,rh 1 12 $ sidestick "[x*3]/2" |+ vel "[1 0.4!3]/2"
+    -- ,rh 1 12 $ sidestick "[x*3]/2" |+ vel "[1 0.4!3]/2" |* vel 0.7
     ,rh 0 0 $ contrabass "pp" +| note (k "[7@2 8@2 [9@7 ~] 7@2 6 1 [4@7 ~] 2@2 1 4@9]/4" |- 36)
     ,rh 0 0 $ cello "pp" +| note (k "[7@2 8@2 [9@7 ~] 7@2 6 1 [4@7 ~] 2@2 1 4@9]/4" |- 24)
     ,rh 0 0 $ harp "pp" +| note (k "[~@3 [4 6 7 8 7 6]*2]/4" |+ 12)
@@ -60,9 +60,9 @@ mapM_ id [p "transport" $ do
     ,rh 13 14 $ violin2 "ppp" +| note (k "[4]/4")
     ,rh 13 14 $ violin1 "ppp" +| note (k "[0]/4" |+ 12)
     ,rh 13 14 $ clarinet "pppp" +| note (k "[6 8 11 13 11 8]/2" |- 12)
-    ,rh 13 14 $ oboe "pp" +| note (k "[4 6 7 8 7 6]/2" |- 12)
+    ,rh 13 14 $ oboe "ppp" +| note (k "[4 6 7 8 7 6]/2" |- 12)
     ,rh 15 18 $ harp "mf" +| note (k "[4 6 7 8 9 6]/2") #legato 4
-    ,rh 15 18 $ clarinet "ppp" +| note (k "[4 6 7 8 9 6]/2" |- 12) |* vel (slow 16 $ lfo saw 1 1.5)
+    ,rh 15 18 $ clarinet "pppp" +| note (k "[4 6 7 8 9 6]/2" |- 12) |* vel (slow 16 $ lfo saw 1 1.5)
     ,rh 17 18 $ trombone "ppp" +| note (k "[4 6 7 8 9 6]/2" |- 24) |* vel (slow 16 $ lfo saw 1 1.5)
     ,rh 15 18 $ harp "f" +| note (k "[0 2]/8" |- "[12,24]")
     ,rh 15 19 $ harp "pp" +| note (k "[0@12 2@12 0@12 2@12 4@6 4@4 ~@2]/20")
@@ -82,7 +82,7 @@ mapM_ id [p "transport" $ do
     ,rh 20 20 $ trombone "pppp" +| note (k "[0]/4" |- 12)
 --
     ,rh 21 24 $ clarinet "pppp" +| note (k "[6 8 11 13 11 8]/2" |- 12) |* vel (slow 16 $ lfo saw 1 1.2)
-    ,rh 21 24 $ oboe "ppp" +| note (k "[4 6 7 8 9 6]/2" |- 12) |* vel (slow 16 $ lfo saw 1 1.2)
+    ,rh 21 24 $ oboe "pppp" +| note (k "[4 6 7 8 9 6]/2" |- 12) |* vel (slow 16 $ lfo saw 1 1.2)
     ,rh 21 24 $ harp "mp" +| note (k "[4 6 7 8 9 6]/2") #sustain 4 |* vel (slow 16 $ lfo saw 0.8 1.2)
     ,rh 21 24 $ violin1 "pp" +| note (k "[7 6 4@2]/16")
     ,rh 21 24 $ violin2 "pp" +| note (k "[4 0 2 0]/16")
@@ -95,7 +95,7 @@ mapM_ id [p "transport" $ do
     ,rh 25 25 $ moog "mf" +| note (k "[-3 ~]/4" |- 12)
     ,rh 25 25 $ trombone "mf" +| note (k "[-3 ~]/4" |- 24)
     ,rh 25 25 $ oboe "pppp" +| note (k "[13 6 8]" |- 12)
-    ,rh 25 25 $ clarinet "ppp" +| note (k "[4]" |- 12)
+    ,rh 25 25 $ clarinet "pppp" +| note (k "[4]" |- 12)
     ,rh 25 25 $ harp "f" +| note (k "[[4, 13] 6 8]") #sustain 10
     ,rh 25 25 $ violin1 "pppp" +| note (k "[4]/4")
     ,rh 25 25 $ violin2 "pppp" +| note (k "[-1]/4")
@@ -213,9 +213,38 @@ mapM_ id [p "transport" $ do
     ]
   --
   ,resetCycles
+  ,once assigncc1
   ,setcps (66/90)
   ,allNotesOff
   ,hush
   ]
+
+
+hush''
+
+  -- UDAGANuniverse.com -- UDAGAN instagram: @saydyy_kuo_fedorova, @oscarsouth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -- Buy this inking at etsy.com/shop/UDAGANuniverse
 
 hush''
