@@ -1,5 +1,7 @@
 hush
 
+d1 $ note "0" #ch 1
+
 -- once $ flute "pp ff" +| note "[14 48]*2" #legato 0.8 -- piccolo
 -- once $ flute "pp ff" +| note "[0 33]*2" #legato 0.8
 -- once $ oboe "pp ff" +| note "[-2 31]*2" #legato 0.8
@@ -202,3 +204,5 @@ do
 setcps 1
 
 hush''
+
+d1 $ note 12 #ch 13

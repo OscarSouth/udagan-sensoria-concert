@@ -2,7 +2,8 @@
 
 s.reboot {
 
-	s.options.device = "iConnectAUDIO4+";
+	// s.options.device = "iConnectAUDIO4+";
+	s.options.device = "M4";
 	s.options.numOutputBusChannels = 4;
 	s.options.numInputBusChannels = 4;
 	// s.options.memSize = 1024*500;
@@ -19,7 +20,8 @@ s.reboot {
 		~latency = 0.0;
 		MIDIClient.init;
 		// MIDIClient.destinations;
-		~midiDIN = MIDIOut.newByName("iConnectAUDIO4+", "iConnectAUDIO4+ MIDI 1");
+		// ~midiDIN = MIDIOut.newByName("iConnectAUDIO4+", "iConnectAUDIO4+ MIDI 1");
+		~midiDIN = MIDIOut.newByName("M4", "M4 MIDI 1");
 		~midiDIN.latency = ~latency;
 		~dirt.soundLibrary.addMIDI(\din, ~midiDIN);
 	};
@@ -29,6 +31,7 @@ s.reboot {
 };
 );
 
+/*
 (
 SynthDef(\sine, {|out=0,freq=440,sustain=1,pan=0,begin=0.5,end=0.5,speed=1,accelerate=0,decay=0|
   var envLength = sustain*(end-begin)/speed;
@@ -42,4 +45,4 @@ SynthDef(\sine, {|out=0,freq=440,sustain=1,pan=0,begin=0.5,end=0.5,speed=1,accel
   Out.ar(out, DirtPan.ar(sig * volume, 2, pan));
 }).add;
 );
-
+*/
